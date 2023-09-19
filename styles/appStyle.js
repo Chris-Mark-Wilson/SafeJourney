@@ -18,7 +18,7 @@ export const appStyle = StyleSheet.create({
       backgroundColor: "gray",
       color: "white",
       borderWidth: 1,
-      borderRadius: "10px",
+      borderRadius: 10,
       textAlign: "center",
       padding:"10px",
       // display : "flex",

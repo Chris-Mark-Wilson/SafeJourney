@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { View } from 'react-native';
 import { MyFriends } from './components/MyFriends';
 import { AddFriend } from './components/AddFriend';
 import Header from './components/Header';
