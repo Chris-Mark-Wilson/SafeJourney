@@ -3,12 +3,14 @@ import { appStyle } from "../styles/appStyle"
 import MapView from 'react-native-maps'
 import { Marker } from "react-native-maps";
 import { PROVIDER_GOOGLE } from "react-native-maps";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getLocation } from "../utils/getLocation";
 
 
 
 
 export const Home = () => {
+
     const [lat, setLat] = useState(52.57559667266577);
     const [long, setLong] = useState(-0.25841876864433294);
    
@@ -20,6 +22,13 @@ export const Home = () => {
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
       });
+      useEffect(()=>{
+        getLocation()
+        .then(( {latitude,longitude})=>{
+            console.log(latitude,longitude)
+        }
+        )
+      },[])
 
     return (
         <View style={appStyle.container}>
