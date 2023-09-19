@@ -15,6 +15,7 @@ export const Home = () => {
     const{friendData,setFriendData}=useContext(FriendContext)
 
     const [whosJourney, setWhosJourney] = useState("user")
+
     const [region, setRegion] = useState(null);
     useEffect(()=>{
         setFriendData((friendData)=>{
@@ -30,18 +31,19 @@ export const Home = () => {
   },[])
   
     useEffect(()=>{
-        // setRegion({
-        //     latitude: friendData.currentLocation.latitude,
-        //     longitude: friendData.currentLocation.longitude,
-        //     latitudeDelta: 0.005,
-        //     longitudeDelta: 0.005,
+        setRegion({
+            latitude: friendData.currentLocation.latitude,
+            longitude: friendData.currentLocation.longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
 
-        // })
+        })
         setWhosJourney((whosJourney)=>{
             
            return whosJourney === "friend"? "user":"friend"
         })
     },[friendData])
+
     useEffect(()=>{
         getLocation()
         .then(( {latitude,longitude})=>{
