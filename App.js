@@ -37,9 +37,11 @@ export default function App() {
           <Drawer.Screen
             name="Home"
             component={(props) => <Home {...props}  userData = {userData} setUserData={setUserData} friendData={friendData}
+             setFriendData={setFriendData}
             />}
            
           />
+          {/* testFriendData passed only for test purpose */}
           <Drawer.Screen name="My friends" component={MyFriends} setFriendData ={setFriendData} />
           <Drawer.Screen name="Add friend" component={AddFriend} />
         </Drawer.Navigator>
