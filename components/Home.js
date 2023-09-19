@@ -6,11 +6,13 @@ import { PROVIDER_GOOGLE } from "react-native-maps";
 import { useEffect, useState,useContext} from "react";
 import { getLocation } from "../utils/getLocation";
 import { UserContext} from "../context/userContext";
+import { FriendContext } from "../context/friendContext";
 
 
 
-export const Home = ({ userData,setUserData, friendData, setFriendData }) => {
-    const{user,setUser} = useContext(UserContext)
+export const Home = () => {
+    const{userData,setUserData} = useContext(UserContext)
+    const{friendData,setFriendData}=useContext(FriendContext)
 
     const [whosJourney, setWhosJourney] = useState("user")
     const [region, setRegion] = useState(null);
@@ -97,7 +99,7 @@ export const Home = ({ userData,setUserData, friendData, setFriendData }) => {
         {/* {destination&&<Marker coordinate={destination}/> } */}
         
         </MapView>
-        <Text style={appStyle.nameText}>{user}</Text>
+        <Text style={appStyle.nameText}>{userData.name}</Text>
         </View>
     )
 }

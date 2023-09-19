@@ -18,7 +18,7 @@ export const MyFriends=({setFriendData})=>{
                 setFriends(friendsList2)
             })
             }
-        })
+    )
     }, [])
 
 

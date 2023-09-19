@@ -16,7 +16,7 @@ export const UserProvider = ({children}) => {
     const [user, setUser] = useState(5)
 
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{userData, setUserData}}>
         {children}
         </UserContext.Provider>
     )
