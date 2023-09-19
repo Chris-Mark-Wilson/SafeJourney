@@ -9,6 +9,7 @@ import { AddFriend } from './components/AddFriend';
 
 
 import { Home } from './components/Home';
+import { UserProvider } from './context/userContext';
 
 
 
@@ -16,13 +17,15 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="My friends" component={MyFriends} />
-        <Drawer.Screen name="Add friend" component={AddFriend} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="My friends" component={MyFriends} />
+          <Drawer.Screen name="Add friend" component={AddFriend} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 
