@@ -9,7 +9,7 @@ import { UserContext} from "../context/userContext";
 
 
 
-export const Home = () => {
+export const Home = ({ currentLocation }) => {
     const{user,setUser} = useContext(UserContext)
 
     const [lat, setLat] = useState(52.57559667266577);
@@ -21,7 +21,7 @@ export const Home = () => {
       useEffect(()=>{
         getLocation()
         .then(( {latitude,longitude})=>{
-            console.log(latitude,longitude, user)
+            console.log(latitude,longitude, user, currentLocation)
             setLat(latitude)
             setLong(longitude)
             setRegion({
@@ -57,9 +57,9 @@ export const Home = () => {
           showsUserLocation={true}
         >
         {destination&&<Marker coordinate={destination}/> }
-        <Text style={appStyle.nameText}>{user}</Text>
+        
         </MapView>
-
+        <Text style={appStyle.nameText}>{user}</Text>
         </View>
     )
 }
