@@ -9,7 +9,7 @@ import { UserContext} from "../context/userContext";
 
 
 
-export const Home = ({ currentLocation }) => {
+export const Home = ({ currentLocation, setCurrentLocation }) => {
     const{user,setUser} = useContext(UserContext)
 
     const [lat, setLat] = useState(52.57559667266577);
@@ -24,6 +24,12 @@ export const Home = ({ currentLocation }) => {
             console.log(latitude,longitude, user, currentLocation)
             setLat(latitude)
             setLong(longitude)
+            setCurrentLocation(()=>{
+                return{
+                    latitude:latitude,
+                    longitude:longitude
+                }
+            })
             setRegion({
                 latitude: latitude,
                 longitude: longitude,
@@ -45,8 +51,8 @@ export const Home = ({ currentLocation }) => {
           onRegionChange={() => {
             setRegion((region) => {
               return {
-                latitude: lat,
-                longitude: long,
+                latitude: currentLocation.latitude,
+                longitude: currentLocation.longitude,
                 latitudeDelta: 0.005,
                 longitudeDelta: 0.005,
               };
@@ -56,7 +62,7 @@ export const Home = ({ currentLocation }) => {
           showsPointsOfInterest={true}
           showsUserLocation={true}
         >
-        {destination&&<Marker coordinate={destination}/> }
+        {/* {destination&&<Marker coordinate={destination}/> } */}
         
         </MapView>
         <Text style={appStyle.nameText}>{user}</Text>

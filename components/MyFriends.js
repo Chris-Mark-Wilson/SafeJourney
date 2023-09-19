@@ -5,6 +5,7 @@ import { UserContext } from "../context/userContext"
 import users from "../testData/users"
 
 export const MyFriends=({setFriendData})=>{
+
     const {user, setUser} = useContext(UserContext)
     const [friends, setFriends] = useState([])
 
@@ -19,6 +20,8 @@ export const MyFriends=({setFriendData})=>{
             }
         })
     }, [])
+
+
     return(
         <View style={appStyle.container}>
             <Text>My Friends</Text>
