@@ -12,7 +12,20 @@ import { UserProvider } from './context/userContext';
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const [currentLocation, setCurrentLocation] = useState("Bob")
+  
+
+  const [userData, setUserData] = useState({
+    startPoint : {latitude: null, longitude: null},
+    endPoint: {latitude: null, longitude: null},
+    currentLocation: {latitude: null, longitude: null},
+    name: ""
+  })
+  const [friendData, setFriendData] = useState({
+    startPoint : {latitude: null, longitude: null},
+    endPoint: {latitude: null, longitude: null},
+    currentLocation: {latitude: null, longitude: null},
+    name:""
+  })
   return (
     <UserProvider>
       <NavigationContainer>
@@ -23,10 +36,11 @@ export default function App() {
           {/* <Drawer.Screen name="Home" component={Home} /> */}
           <Drawer.Screen
             name="Home"
-            component={(props) => <Home {...props} currentLocation={currentLocation} />}
+            component={(props) => <Home {...props}  userData = {userData} setUserData={setUserData} friendData={friendData}
+            />}
            
           />
-          <Drawer.Screen name="My friends" component={MyFriends} />
+          <Drawer.Screen name="My friends" component={MyFriends} setFriendData ={setFriendData} />
           <Drawer.Screen name="Add friend" component={AddFriend} />
         </Drawer.Navigator>
       </NavigationContainer>
