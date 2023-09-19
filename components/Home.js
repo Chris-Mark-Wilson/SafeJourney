@@ -11,38 +11,36 @@ import { UserContext} from "../context/userContext";
 
 export const Home = ({ userData,setUserData, friendData, setFriendData }) => {
     const{user,setUser} = useContext(UserContext)
-/* 
-const [lat, setLat] = useState(52.57559667266577);
-    const [long, setLong] = useState(-0.25841876864433294);
-*/
-  
-   setFriendData((friendData)=>{
-    const newData = {...friendData}
-    newData.currentLocation = {
-        latitude: 52.57559667266577,
-        longitude:-0.25841876864433294
-    }
-    return newData;
-        
-   })
-    const [whosJourney, setWhosJourney] = useState("user")
-   
 
+    const [whosJourney, setWhosJourney] = useState("user")
     const [region, setRegion] = useState(null);
     useEffect(()=>{
-        setRegion({
-            latitude: friendData.currentLocation.latitude,
-            longitude: friendData.currentLocation.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
+        setFriendData((friendData)=>{
+            const newData = {...friendData}
+            newData.currentLocation = {
+                latitude: 52.57559667266577,
+                longitude:-0.25841876864433294
+            }
+            return newData;
+            
+       })
+       
+  },[])
+  
+    useEffect(()=>{
+        // setRegion({
+        //     latitude: friendData.currentLocation.latitude,
+        //     longitude: friendData.currentLocation.longitude,
+        //     latitudeDelta: 0.005,
+        //     longitudeDelta: 0.005,
 
-        })
+        // })
         setWhosJourney((whosJourney)=>{
             
            return whosJourney === "friend"? "user":"friend"
         })
     },[friendData])
-      useEffect(()=>{
+    useEffect(()=>{
         getLocation()
         .then(( {latitude,longitude})=>{
             console.log(latitude,longitude, user)
@@ -55,13 +53,15 @@ const [lat, setLat] = useState(52.57559667266577);
                 }
                 return newData;
             })
-            setRegion({
-                latitude: latitude,
-                longitude: longitude,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005,
+            if(whosJourney === "user"){
+                setRegion({
+                    latitude: latitude,
+                    longitude: longitude,
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0.005,
 
-            })
+                })
+            }
         }
         )
       },[])

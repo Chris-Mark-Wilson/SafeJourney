@@ -8,25 +8,14 @@ import Header from './components/Header';
 import { useState } from 'react';
 import { Home } from './components/Home';
 import { UserProvider } from './context/userContext';
+import { FriendProvider } from './context/friendContext';
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  
 
-  const [userData, setUserData] = useState({
-    startPoint : {latitude: null, longitude: null},
-    endPoint: {latitude: null, longitude: null},
-    currentLocation: {latitude: null, longitude: null},
-    name: ""
-  })
-  const [friendData, setFriendData] = useState({
-    startPoint : {latitude: null, longitude: null},
-    endPoint: {latitude: null, longitude: null},
-    currentLocation: {latitude: null, longitude: null},
-    name:""
-  })
-  return (
+return (
+  <FriendProvider>
     <UserProvider>
       <NavigationContainer>
         <View>
@@ -47,6 +36,7 @@ export default function App() {
         </Drawer.Navigator>
       </NavigationContainer>
     </UserProvider>
+    </FriendProvider>
   );
 }
 
