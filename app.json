@@ -20,17 +20,22 @@
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyDdIPKdwYgd7PJXMkdKAdPmWve0BuuPDOQ"
+          "apiKey": "AIzaSyCw0gGuJ5RFdImAo3E4dMDyJ6lqwgalqjY"
         }
       },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package":"SafeJourney"
+      "package": "com.bigsegs.SafeJourney"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "be313ef4-0833-459d-b0b2-ee21cb002520"
+      }
     }
   }
 }
