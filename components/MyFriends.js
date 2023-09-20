@@ -33,10 +33,9 @@ let friendsList=[]
         
     }, [userData.userId])
 
-    const handlePress = (e, stuff) => {
-        console.log(Object.keys(e.nativeEvent.target))
-        console.log(stuff)
-        // console.log(e.target)
+    const handlePress = (val) => {
+
+        console.log(val)
     }
 
     return(
@@ -50,7 +49,7 @@ let friendsList=[]
 
 data={friends}
 renderItem={({ item }) =>
-          item.location.status === true ? <Pressable onPress={handlePress} value = {item.name} style={appStyle.pressable}><Item name={item.name} /></Pressable> : <Item name={item.name} />
+          item.location.status === true ? <Pressable onPress={()=>handlePress(item)} style={appStyle.pressable}><Item name={item.name} /></Pressable> : <Item name={item.name} />
         }
 keyExtractor={item => item.name}
 // data={friends.map(friend=>{
