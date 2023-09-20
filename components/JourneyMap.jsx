@@ -4,10 +4,21 @@ import { appStyle } from "../styles/appStyle";
 import MapView from 'react-native-maps'
 import { PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import { FriendContext } from "../context/friendContext";
+import{Marker} from 'react-native-maps'
 
 export default function JourneyMap({region,data,setRegion}){
-  const GOOGLE_MAPS_APIKEY = "AIzaSyDdIPKdwYgd7PJXMkdKAdPmWve0BuuPDOQ";
+  const{userData}=useContext(UserContext)
+  const {friendData}=useContext(FriendContext)
+  const GOOGLE_MAPS_APIKEY = "AIzaSyCw0gGuJ5RFdImAo3E4dMDyJ6lqwgalqjY";
   //console.log(process.env.apiKey)
+  console.log(data.startPoint,"start point")
+  console.log(data.endPoint,"end point")
+  console.log(data.currentLocation,"currentLocation")
+
+  console.log(region,"region")
     return(
       
         <MapView
@@ -23,11 +34,14 @@ export default function JourneyMap({region,data,setRegion}){
         showsPointsOfInterest={true}
         showsUserLocation={true}
       >
-      {/* {destination&&<Marker coordinate={destination}/> } */}
-      <MapViewDirections
+     <Marker coordinate={data.startPoint}/> 
+     <Marker coordinate={data.endPoint}/>
+     <MapViewDirections
       origin={data.startPoint}
       destination={data.endPoint}
       apikey={GOOGLE_MAPS_APIKEY}
+      strokeWidth={3}
+    strokeColor="hotpink"
   />
       </MapView>
      

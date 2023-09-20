@@ -36,7 +36,7 @@ newData.startPoint={
   longitude:-0.25841876864433000
 }
 newData.endPoint={
-  latitude:52.57559667266900,
+  latitude:52.54555667265900,
   longitude:-0.2584187686440000
 }
 newData.user_id = 3
@@ -46,40 +46,42 @@ return newData
 },[])
   //////////////////////////////////
 
-  useEffect(()=>{
-setTimeout(()=>{
-  setTimer((timer)=>{
-    return timer+1
-  })
-},timerInterval)
-  },[timer])
+//   useEffect(()=>{
+// setTimeout(()=>{
+//   setTimer((timer)=>{
+//     return timer+1
+//   })
+// },timerInterval)
+//   },[timer])
 
-  useEffect(()=>{
-  if(whosJourney==="friend"){
-  getFriends(1)
-  .then(response=>{
-    const friend = response.filter(friend =>{
-      return friend.user_id === friendData.user_id
-    })[0]
+  // useEffect(()=>{
+  //   setIsLoading(true)
+  // if(whosJourney==="friend"){
+  // getFriends(2)
+  // .then(response=>{
+
+  //   const friend = response.filter(friend =>{
+  //     return friend.user_id === friendData.user_id
+  //   })[0]
    
     /////////////////////This should be updated from response
-      setFriendData((friendData)=>{
-        let newData={...friendData}
-        newData.currentLocation={
-        latitude:52.57559667266700,
-        longitude:-0.25841876864433500
-      },
-      newData.startPoint={
-        latitude:52.57559667266500,
-        longitude:-0.25841876864433000
-      },
-      newData.endPoint={
-        latitude:52.57559667266900,
-        longitude:-0.2584187686440000
-      }
-      newData.user_id = 2
-      return newData
-      })
+      // setFriendData((friendData)=>{
+      //   let newData={...friendData}
+      //   newData.currentLocation={
+      //   latitude:52.57559667266700,
+      //   longitude:-0.25841876864433500
+      // },
+      // newData.startPoint={
+      //   latitude:52.57559667266700,
+      //   longitude:-0.25841876864433500
+      // },
+      // newData.endPoint={
+      //   latitude:52.57559667266900,
+      //   longitude:-0.2584187686440000
+      // }
+      // newData.user_id = 2
+      // return newData
+      // })
      /////////////////////
     //  setFriendData(()=>{
     //   let newData={...friend}
@@ -89,12 +91,14 @@ setTimeout(()=>{
     // }
     //return newData
     // })
-  })
-  .catch(error =>{
-    console.log(error,"Error in home")
-  })
-}
-  },[friendData])
+//     setIsLoading(false)
+//   })
+//   .catch(error =>{
+//     console.log(error,"Error in home")
+
+//   })
+// }
+//   },[friendData,timer])
   //   useEffect(()=>{
   //       setFriendData((friendData)=>{
   //           const newData = {...friendData}
@@ -124,7 +128,8 @@ setTimeout(()=>{
 
   useEffect(() => {
     setIsLoading(true);
-    getLocation().then(({ latitude, longitude }) => {
+    getLocation()
+    .then(({ latitude, longitude }) => {
       setUserData((userData) => {
         const newData = { ...userData };
         newData.currentLocation = {
@@ -151,7 +156,7 @@ setTimeout(()=>{
 
       setIsLoading(false);
     });
-  }, [timer]);
+  }, [friendData]);
 
   return isLoading ? (
     <Text>Loading....</Text>
