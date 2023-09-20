@@ -8,8 +8,8 @@ export const FriendProvider = ({children}) => {
         startPoint : {latitude: null, longitude: null},
         endPoint: {latitude: null, longitude: null},
         currentLocation: {latitude: null, longitude: null},
-        name: ""
-       
+        name: "",
+       user_id : "null"
     })
     return (
         <FriendContext.Provider value={{friendData, setFriendData}}>

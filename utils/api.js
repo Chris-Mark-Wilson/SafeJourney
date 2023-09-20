@@ -10,6 +10,6 @@ export const getFriends = (user_id) => {
         return response.data.friendList
     })
     .catch((err)=>{
-        next(err)
+     console.log(err,"< = error in api catch")
     })
 }
