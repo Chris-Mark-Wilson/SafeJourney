@@ -27,5 +27,8 @@ export const appStyle = StyleSheet.create({
       margin:'auto',
       width: "15%",
       height: "5%",
+    },
+    pressable: {
+      backgroundColor: "green"
     }
   });

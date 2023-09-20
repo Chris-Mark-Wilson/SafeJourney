@@ -10,7 +10,7 @@ import { FriendContext } from "../context/friendContext";
 
 
 
-export const Home = () => {
+export const Home = ({navigation}) => {
     const{userData,setUserData} = useContext(UserContext)
     const{friendData,setFriendData}=useContext(FriendContext)
 
