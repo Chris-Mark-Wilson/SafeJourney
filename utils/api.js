@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { UserContext } from "../context/userContext"
+
+
 
 const BASE_URL = `https://be-safejourney.onrender.com/api`
 
