@@ -27,10 +27,11 @@ export const Home = () => {
   useEffect(()=>{
 setFriendData((friend)=>{
   let newData={...friend}
-newData.currentLocation={
+  newData.currentLocation={
   latitude:52.57559667266700,
   longitude:-0.25841876864433500
 }
+newData.user_id = 3
 return newData
 })
 },[])
@@ -45,18 +46,35 @@ setTimeout(()=>{
   },[timer])
 
   useEffect(()=>{
-
-
-
-if(whosJourney==="friend"){
+  if(whosJourney==="friend"){
   getFriends(1)
   .then(response=>{
-    console.log(response,"<= response in home")
-
-
+    const friend = response.filter(friend =>{
+      return friend.user_id === friendData.user_id
+    })[0]
+   
+    /////////////////////This should be updated from response
+      setFriendData(()=>{
+        let newData={...friend}
+        newData.currentLocation={
+        latitude:52.57559667266700,
+        longitude:-0.25841876864433500
+      }
+      newData.user_id = 2
+      return newData
+      })
+     /////////////////////
+    //  setFriendData(()=>{
+    //   let newData={...friend}
+    //   newData.currentLocation={
+    //   latitude:friend.location.current.latitude,
+    //   longitude:friend.location.current.longitude
+    // }
+    //return newData
+    // })
   })
 }
-  },[])
+  },[friendData])
   //   useEffect(()=>{
   //       setFriendData((friendData)=>{
   //           const newData = {...friendData}
