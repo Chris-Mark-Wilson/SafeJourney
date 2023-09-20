@@ -8,21 +8,33 @@ import { useEffect, useState, useContext } from "react";
 import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
-// import  Map  from "./Map";
+import { getFriends } from "../utils/api";
 
 export const Home = () => {
 
-  const timerInterval=3000;
+  const timerInterval=10000;
 
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
 
-  const [whosJourney, setWhosJourney] = useState("user");
+  const [whosJourney, setWhosJourney] = useState("friend");
 
   const [region, setRegion] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
   const [timer,setTimer]=useState(0)
+  ////////////TEST SET FREINDDATA///
+  useEffect(()=>{
+setFriendData((friend)=>{
+  let newData={...friend}
+newData.currentLocation={
+  latitude:52.57559667266700,
+  longitude:-0.25841876864433500
+}
+return newData
+})
+},[])
+  //////////////////////////////////
 
   useEffect(()=>{
 setTimeout(()=>{
@@ -31,11 +43,20 @@ setTimeout(()=>{
   })
 },timerInterval)
   },[timer])
+
   useEffect(()=>{
+
+
+
 if(whosJourney==="friend"){
-  
+  getFriends(1)
+  .then(response=>{
+    console.log(response,"<= response in home")
+
+
+  })
 }
-  },[timer])
+  },[])
   //   useEffect(()=>{
   //       setFriendData((friendData)=>{
   //           const newData = {...friendData}
@@ -89,7 +110,7 @@ if(whosJourney==="friend"){
           longitudeDelta: 0.005,
         });
       }
-
+console.log("finished")
       setIsLoading(false);
     });
   }, [timer]);
@@ -99,7 +120,7 @@ if(whosJourney==="friend"){
   ) : (
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
-        <Map region={region} location={friendData} setRegion={setRegion} />
+        <JourneyMap region={region} location={friendData} setRegion={setRegion} />
       ) : (
         <JourneyMap region={region} setRegion={setRegion} data={userData} />
       )}
