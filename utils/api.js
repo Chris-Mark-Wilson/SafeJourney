@@ -2,15 +2,11 @@ import axios from 'axios'
 
 
 
+const BASE_URL = `https://be-safejourney.onrender.com/api`
 
-
-
-const apiUrl = "https://be-safejourney.onrender.com/api/users/:userId/friends"
 export const getFriends = (user_id) => {
-
-    return axios.get(apiUrl)
+    return axios.get(`${BASE_URL}/users/${user_id}/friends`)
     .then((response) => {
-        
         return response.data.friendList
     })
     .catch((err)=>{
