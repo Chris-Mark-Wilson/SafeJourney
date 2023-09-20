@@ -7,20 +7,24 @@ import { AddFriend } from "./components/AddFriend";
 import Header from "./components/Header";
 import { useState } from "react";
 import { Home } from "./components/Home";
-import { UserProvider } from "./context/userContext";
+import { UserContext, UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
 import SignIn from "./components/SignIn";
+import { useContext } from "react";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const user = useContext(UserContext)
+  if (!user) {
+    return <View><SignIn/></View>
+  }
   return (
     <FriendProvider>
       <UserProvider>
         <NavigationContainer>
           <View>
             <Header />
-            <SignIn />
           </View>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={Home} />
