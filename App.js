@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Home } from "./components/Home";
 import { UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
+import SignIn from "./components/SignIn";
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <NavigationContainer>
           <View>
             <Header />
+            <SignIn />
           </View>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={Home} />
