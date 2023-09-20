@@ -45,7 +45,7 @@ export const Home = () => {
     useEffect(()=>{
         getLocation()
         .then(( {latitude,longitude})=>{
-            console.log(latitude,longitude, user)
+            
             
            setUserData((userData)=>{
                 const newData = {...userData}

@@ -8,26 +8,31 @@ import axios from 'axios'
 
 export const MyFriends=({setFriendData})=>{
 
-    const {user, setUser} = useContext(UserContext)
+    const {userData, setUserData} = useContext(UserContext)
     const [friends, setFriends] = useState([])
-
+let friendsList=[]
     useEffect(()=> {
-        const friendsList = axios.get(`https://be-safejourney.onrender.com/api/users/${user}`).friendList
-        .then((friendsIds) => {
-            return friendsIds.map(friendId => {
-                return users[friendId-1].name
+         friendsList = axios.get(`https://be-safejourney.onrender.com/api/users/${userData.userId}/friends`)
+       
+        .then((response) => {
+
+            console.log(response.data.friendList)
+            return friendsObjects.map(friendObject => {
+                return friendObject.name
             }).then((friendsList2) => {
                 setFriends(friendsList2)
             })
             }
     )
-    }, [])
+    }, [friendsList])
 
 
     return(
         <View style={appStyle.container}>
             <Text>My Friends</Text>
-            <Text>{friends}</Text>
+            <Text>{friendsList}</Text>
         </View>
+       
+        
     )
 }
