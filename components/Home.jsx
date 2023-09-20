@@ -31,7 +31,16 @@ setFriendData((friend)=>{
   latitude:52.57559667266700,
   longitude:-0.25841876864433500
 }
+newData.startPoint={
+  latitude:52.57559667266500,
+  longitude:-0.25841876864433000
+}
+newData.endPoint={
+  latitude:52.57559667266900,
+  longitude:-0.2584187686440000
+}
 newData.user_id = 3
+
 return newData
 })
 },[])
@@ -54,11 +63,19 @@ setTimeout(()=>{
     })[0]
    
     /////////////////////This should be updated from response
-      setFriendData(()=>{
-        let newData={...friend}
+      setFriendData((friendData)=>{
+        let newData={...friendData}
         newData.currentLocation={
         latitude:52.57559667266700,
         longitude:-0.25841876864433500
+      },
+      newData.startPoint={
+        latitude:52.57559667266500,
+        longitude:-0.25841876864433000
+      },
+      newData.endPoint={
+        latitude:52.57559667266900,
+        longitude:-0.2584187686440000
       }
       newData.user_id = 2
       return newData
@@ -72,6 +89,9 @@ setTimeout(()=>{
     // }
     //return newData
     // })
+  })
+  .catch(error =>{
+    console.log(error,"Error in home")
   })
 }
   },[friendData])
@@ -128,7 +148,7 @@ setTimeout(()=>{
           longitudeDelta: 0.005,
         });
       }
-console.log("finished")
+
       setIsLoading(false);
     });
   }, [timer]);
@@ -138,7 +158,7 @@ console.log("finished")
   ) : (
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
-        <JourneyMap region={region} location={friendData} setRegion={setRegion} />
+        <JourneyMap region={region} data={friendData} setRegion={setRegion} />
       ) : (
         <JourneyMap region={region} setRegion={setRegion} data={userData} />
       )}
