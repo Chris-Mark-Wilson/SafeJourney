@@ -15,24 +15,22 @@ export const MyFriends=({setFriendData})=>{
 let friendsList=[]
     useEffect(()=> {
         
-         friendsList = getFriends(userData.userId)
+        getFriends(userData.userId)
         .then((friendList) => {
-            // console.log(friendList)
-            return friendList.map(friendObject => {
-                // console.log("in map", friendObject.name)
-                return friendObject.name
-            }).then((friendsList2) => {
-                console.log(friendsList2)
-                setFriends(friendsList2)
-            })
-            }
-    )
-    }, [friendsList])
+           setFriends(() => {
+            return [...friendList]
+           })
+            
+        })
+    }, [])
 
 
     return(
         <View style={appStyle.container}>
             <Text>My Friends</Text>
+            {friends.map((friend) => {
+                
+            })}
             <Text>{friends}</Text>
         </View>
        
