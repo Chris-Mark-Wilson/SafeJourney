@@ -3,6 +3,8 @@ import { appStyle } from "../styles/appStyle"
 import { useState, useEffect, useContext } from "react"
 import { UserContext } from "../context/userContext"
 import users from "../testData/users"
+import axios from 'axios'
+
 
 export const MyFriends=({setFriendData})=>{
 
@@ -10,7 +12,7 @@ export const MyFriends=({setFriendData})=>{
     const [friends, setFriends] = useState([])
 
     useEffect(()=> {
-        const friendsList = (users[user-1].friendList)
+        const friendsList = axios.get(`https://be-safejourney.onrender.com/api/users/${user}`).friendList
         .then((friendsIds) => {
             return friendsIds.map(friendId => {
                 return users[friendId-1].name
@@ -25,6 +27,7 @@ export const MyFriends=({setFriendData})=>{
     return(
         <View style={appStyle.container}>
             <Text>My Friends</Text>
+            <Text>{friends}</Text>
         </View>
     )
 }
