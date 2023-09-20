@@ -13,7 +13,7 @@ const Item = ({name}) => (
   );
 
 
-export const MyFriends=({navigation, whosJourney, setWhosJourney})=>{
+export const MyFriends=({navigation})=>{
 
     const {userData, setUserData} = useContext(UserContext)
     const{friendData,setFriendData}=useContext(FriendContext)
@@ -25,12 +25,19 @@ let friendsList=[]
         
         getFriends(userData.userId)
         .then((friendList) => {
-           setFriends(friendList)
+           setFriends(() =>{
+            return [...friendList]
+           })
            })
             
         
     }, [userData.userId])
 
+    const handlePress = (e, stuff) => {
+        console.log(Object.keys(e.nativeEvent.target))
+        console.log(stuff)
+        // console.log(e.target)
+    }
 
     return(
         <View style={appStyle.container}>
@@ -43,7 +50,7 @@ let friendsList=[]
 
 data={friends}
 renderItem={({ item }) =>
-          item.status === "travelling" ? <Pressable onPress={() => {setWhosJourney("friend").then(() => {setFriendData(item)}).then(()=>{navigation.navigate("Friend")})}} value = {item.name}><Item name={item.name} /></Pressable> : <Item name={item.name} />
+          item.location.status === true ? <Pressable onPress={handlePress} value = {item.name} style={appStyle.pressable}><Item name={item.name} /></Pressable> : <Item name={item.name} />
         }
 keyExtractor={item => item.name}
 // data={friends.map(friend=>{

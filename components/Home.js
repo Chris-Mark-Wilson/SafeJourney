@@ -10,11 +10,11 @@ import { FriendContext } from "../context/friendContext";
 
 
 
-export const Home = ({whosJourney, setWhosJourney}) => {
+export const Home = ({navigation}) => {
     const{userData,setUserData} = useContext(UserContext)
     const{friendData,setFriendData}=useContext(FriendContext)
 
-    // const [whosJourney, setWhosJourney] = useState("user")
+    const [whosJourney, setWhosJourney] = useState("user")
 
     const [region, setRegion] = useState(null);
     useEffect(()=>{
