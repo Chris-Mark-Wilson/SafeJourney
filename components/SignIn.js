@@ -8,9 +8,12 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { signUp } from "../utils/api";
+
 export default function SignIn() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -27,17 +30,14 @@ export default function SignIn() {
         <TextInput
           style={styles.TextInput}
           value={phoneNumber}
-          placeholder="Phone Number."
+          placeholder="Phone Number"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(input) => setPhoneNumber(input)}
         /> 
       </View> 
-      <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text> 
-      </TouchableOpacity> 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text> 
+        <Text style={styles.loginText} onPress={() => {signUp (name, phoneNumber)}}>LOGIN</Text> 
       </TouchableOpacity> 
     </View> 
   );

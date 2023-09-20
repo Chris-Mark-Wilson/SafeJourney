@@ -17,7 +17,7 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   const user = useContext(UserContext)
   if (!user) {
-    return <View><SignIn/></View>
+    return <SignIn/>
   }
   return (
     <FriendProvider>
