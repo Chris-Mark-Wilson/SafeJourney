@@ -13,6 +13,7 @@ import { FriendProvider } from "./context/friendContext";
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const [whosJourney, setWhosJourney] = useState("user")
   return (
     <FriendProvider>
       <UserProvider>
@@ -21,8 +22,8 @@ export default function App() {
             <Header />
           </View>
           <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="Home" component={Home} />
-            <Drawer.Screen name="My friends" component={MyFriends} />
+            <Drawer.Screen name="Home" component={Home} whosJourney={whosJourney} setWhosJourney={setWhosJourney} />
+            <Drawer.Screen name="My friends" component={MyFriends} whosJourney={whosJourney} setWhosJourney={setWhosJourney} />
             <Drawer.Screen name="Add friend" component={AddFriend} />
           </Drawer.Navigator>
         </NavigationContainer>

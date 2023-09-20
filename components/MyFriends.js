@@ -2,8 +2,7 @@ import { View, Text, FlatList, Pressable, SectionList, StyleSheet } from "react-
 import { appStyle } from "../styles/appStyle"
 import { useState, useEffect, useContext } from "react"
 import { UserContext } from "../context/userContext"
-import users from "../testData/users"
-import axios from 'axios'
+import { FriendContext } from "../context/friendContext"
 import { getFriends } from "../utils/api"
 
 
@@ -14,9 +13,11 @@ const Item = ({name}) => (
   );
 
 
-export const MyFriends=({setFriendData})=>{
+export const MyFriends=({navigation, whosJourney, setWhosJourney})=>{
 
     const {userData, setUserData} = useContext(UserContext)
+    const{friendData,setFriendData}=useContext(FriendContext)
+
     const [friends, setFriends] = useState([])
 
 let friendsList=[]
@@ -24,7 +25,6 @@ let friendsList=[]
         
         getFriends(userData.userId)
         .then((friendList) => {
-            console.log(friendList)
            setFriends(friendList)
            })
             
@@ -43,7 +43,7 @@ let friendsList=[]
 
 data={friends}
 renderItem={({ item }) =>
-          item.status === "travelling" ? <Pressable onPress={handlePress} value = {item.name}><Item name={item.name} /></Pressable> : <Item name={item.name} />
+          item.status === "travelling" ? <Pressable onPress={() => {setWhosJourney("friend").then(() => {setFriendData(item)}).then(()=>{navigation.navigate("Friend")})}} value = {item.name}><Item name={item.name} /></Pressable> : <Item name={item.name} />
         }
 keyExtractor={item => item.name}
 // data={friends.map(friend=>{
