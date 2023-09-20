@@ -8,16 +8,17 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import{Marker} from 'react-native-maps'
+import{API_KEY} from '@env'
 
 export default function JourneyMap({region,data,setRegion}){
   const{userData}=useContext(UserContext)
   const {friendData}=useContext(FriendContext)
-  const GOOGLE_MAPS_APIKEY = "AIzaSyCw0gGuJ5RFdImAo3E4dMDyJ6lqwgalqjY";
+  const GOOGLE_MAPS_APIKEY = API_KEY;
   //console.log(process.env.apiKey)
   console.log(data.startPoint,"start point")
   console.log(data.endPoint,"end point")
   console.log(data.currentLocation,"currentLocation")
-
+console.log(API_KEY)
   console.log(region,"region")
     return(
       

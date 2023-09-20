@@ -36,7 +36,7 @@ newData.startPoint={
   longitude:-0.25841876864433000
 }
 newData.endPoint={
-  latitude:52.54555667265900,
+  latitude:52.5775667265900,
   longitude:-0.2584187686440000
 }
 newData.user_id = 3
