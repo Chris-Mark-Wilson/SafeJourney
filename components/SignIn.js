@@ -1,18 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity,} from "react-native";
 import { signUp } from "../utils/api";
+import { UserContext } from "../context/userContext";
 
-export default function SignIn() {
+export function SignIn() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  function onPress() {
+    signUp (name, phoneNumber)
+    .then((user) => {
+       const {setUserData} = useContext(UserContext)
+       setUserData(user)
+    })
+
+}
 
   return (
     <View style={styles.container}>
@@ -36,8 +39,8 @@ export default function SignIn() {
           onChangeText={(input) => setPhoneNumber(input)}
         /> 
       </View> 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText} onPress={() => {signUp (name, phoneNumber)}}>LOGIN</Text> 
+      <TouchableOpacity style={styles.loginBtn} onPress={onPress}>
+        <Text style={styles.loginText} >LOGIN</Text> 
       </TouchableOpacity> 
     </View> 
   );
