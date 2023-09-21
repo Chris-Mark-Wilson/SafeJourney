@@ -29,16 +29,20 @@ export default function JourneyMap({region,data,setRegion}){
         // onPress={handlePress}
         showsPointsOfInterest={true}
         showsUserLocation={true}
-      >
-     {/* <Marker coordinate={data.location.start}/> 
-     <Marker coordinate={data.location.end}/> */}
+      >{data.location.status &&
+        <>
+        <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}}/> 
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}}/>
+        </>}
+
+     {data.location.status && 
      <MapViewDirections
-      origin={data.location.start}
-      destination={data.location.end}
+      origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
+      destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
       apikey={GOOGLE_MAPS_APIKEY}
       strokeWidth={3}
     strokeColor="hotpink"
-  />
+  />}
       </MapView>
      
     )
