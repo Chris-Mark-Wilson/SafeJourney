@@ -1,8 +1,5 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { appStyle } from "../styles/appStyle";
-import MapView from "react-native-maps";
-import { PROVIDER_GOOGLE } from "react-native-maps";
-import { Marker } from "react-native-maps";
 import JourneyMap from "./JourneyMap";
 import { useEffect, useState, useContext } from "react";
 import { getLocation } from "../utils/getLocation";
@@ -17,7 +14,7 @@ export const Home = () => {
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
 
-  const [whosJourney, setWhosJourney] = useState("friend");
+  const [whosJourney, setWhosJourney] = useState(null);
 
   const [region, setRegion] = useState(null);
 
@@ -128,7 +125,7 @@ export const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getLocation()
+    getLocation(userData)
     .then(({ latitude, longitude }) => {
       setUserData((userData) => {
         const newData = { ...userData };
@@ -137,23 +134,23 @@ export const Home = () => {
           long: longitude,
         };
         return newData;
-      });
-      if (whosJourney === "user") {
+        })
+
+      if (whosJourney === "user" || whosJourney === null) {
         setRegion({
           latitude: latitude,
           longitude: longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         });
-      } else {
+      } else if (whosJourney === "friend"){
         setRegion({
           latitude: friendData.location.current.lat,
           longitude: friendData.location.current.long,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
-        });
+        })
       }
-
       setIsLoading(false);
     });
   }, [friendData]);
