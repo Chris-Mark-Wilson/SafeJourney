@@ -20,7 +20,7 @@
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCw0gGuJ5RFdImAo3E4dMDyJ6lqwgalqjY"
+          "apiKey": "AIzaSyARh4RFtAdAJbWnIv2kytSV20LLnGeWic4"
         }
       },
       "adaptiveIcon": {
@@ -32,10 +32,10 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "be313ef4-0833-459d-b0b2-ee21cb002520"
-      }
-    }
+    // "extra": {
+    //   "eas": {
+    //     // "projectId": "be313ef4-0833-459d-b0b2-ee21cb002520"
+    //   }
+    // }
   }
 }

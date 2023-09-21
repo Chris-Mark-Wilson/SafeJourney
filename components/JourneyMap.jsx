@@ -14,12 +14,7 @@ export default function JourneyMap({region,data,setRegion}){
   const{userData}=useContext(UserContext)
   const {friendData}=useContext(FriendContext)
   const GOOGLE_MAPS_APIKEY = API_KEY;
-  //console.log(process.env.apiKey)
-  console.log(data.startPoint,"start point")
-  console.log(data.endPoint,"end point")
-  console.log(data.currentLocation,"currentLocation")
-console.log(API_KEY)
-  console.log(region,"region")
+
     return(
       
         <MapView
@@ -31,15 +26,15 @@ console.log(API_KEY)
           setRegion(region)
          
         }}
-      //   onPress={handlePress}
+        // onPress={handlePress}
         showsPointsOfInterest={true}
         showsUserLocation={true}
       >
-     <Marker coordinate={data.startPoint}/> 
-     <Marker coordinate={data.endPoint}/>
+     {/* <Marker coordinate={data.location.start}/> 
+     <Marker coordinate={data.location.end}/> */}
      <MapViewDirections
-      origin={data.startPoint}
-      destination={data.endPoint}
+      origin={data.location.start}
+      destination={data.location.end}
       apikey={GOOGLE_MAPS_APIKEY}
       strokeWidth={3}
     strokeColor="hotpink"
