@@ -15,6 +15,11 @@ export const getFriends = (user_id) => {
 }
 
 export const signUp = async (name, phoneNumber) => {
-    const user = await axios.post(`${BASE_URL}/users`, {name, phoneNumber})
+    const { data: {user} } = await axios.post(`${BASE_URL}/users`, {name, phoneNumber})
+    return user
+}
+
+export const logIn = async (phoneNumber) => {
+    const { data: {user} } = await axios.get(`${BASE_URL}/login/${phoneNumber}`)
     return user
 }
