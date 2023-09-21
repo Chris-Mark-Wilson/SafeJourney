@@ -127,8 +127,8 @@ export const Home = () => {
     setIsLoading(true);
     getLocation(userData)
     .then(({ latitude, longitude }) => {
-      setUserData((userData) => {
-        const newData = { ...userData };
+      setUserData((currUserData) => {
+        const newData = JSON.parse(JSON.stringify(currUserData))
         newData.location.current = {
           lat: latitude,
           long: longitude,
