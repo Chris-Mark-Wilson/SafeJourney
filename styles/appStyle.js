@@ -20,7 +20,7 @@ export const appStyle = StyleSheet.create({
       borderWidth: 1,
       borderRadius: 10,
       textAlign: "center",
-      padding:10,
+      padding:"1%",
       // display : "flex",
       // justifyContent : "center",
       // alignItems : "center",

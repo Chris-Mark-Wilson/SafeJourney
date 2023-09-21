@@ -10,18 +10,13 @@ import { Home } from "./components/Home";
 import { UserContext, UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
 import { SignIn } from "./components/SignIn";
-import { useContext } from "react";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const {user} = useContext(UserContext)
-  if (!user) {
-    return <SignIn/>
-  }
   return (
     <FriendProvider>
-      <UserProvider>
+   <UserProvider> 
         <NavigationContainer>
           <View>
             <Header />
@@ -32,7 +27,7 @@ export default function App() {
             <Drawer.Screen name="Add friend" component={AddFriend} />
           </Drawer.Navigator>
         </NavigationContainer>
-      </UserProvider>
-    </FriendProvider>
+        </UserProvider>
+        </FriendProvider>
   );
 }

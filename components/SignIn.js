@@ -7,12 +7,14 @@ import { UserContext } from "../context/userContext";
 export function SignIn() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const {setUserData} = useContext(UserContext)
 
   function onPress() {
     signUp (name, phoneNumber)
     .then((user) => {
-       const {setUserData} = useContext(UserContext)
        setUserData(user)
+    })
+    .catch((err) => {
     })
 
 }

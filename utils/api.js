@@ -15,7 +15,6 @@ export const getFriends = (user_id) => {
 }
 
 export const signUp = async (name, phoneNumber) => {
-    console.log(name)
     const user = await axios.post(`${BASE_URL}/users`, {name, phoneNumber})
     return user
 }
