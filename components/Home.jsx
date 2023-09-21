@@ -25,24 +25,24 @@ export const Home = () => {
   const [timer,setTimer]=useState(0)
   ////////////TEST SET FREINDDATA///
   useEffect(()=>{
-setFriendData((friend)=>{
-  let newData={...friend}
-  newData.currentLocation={
-  latitude:52.57559667266700,
-  longitude:-0.25841876864433500
-}
-newData.startPoint={
-  latitude:52.57559667266500,
-  longitude:-0.25841876864433000
-}
-newData.endPoint={
-  latitude:52.5775667265900,
-  longitude:-0.2584187686440000
-}
-newData.user_id = 3
+// setFriendData((friend)=>{
+//   let newData={...friend}
+//   newData.currentLocation={
+//   latitude:52.57559667266700,
+//   longitude:-0.25841876864433500
+// }
+// newData.startPoint={
+//   latitude:52.57559667266500,
+//   longitude:-0.25841876864433000
+// }
+// newData.endPoint={
+//   latitude:52.5775667265900,
+//   longitude:-0.2584187686440000
+// }
+// newData.user_id = 3
 
-return newData
-})
+// return newData
+// })
 },[])
   //////////////////////////////////
 
@@ -132,9 +132,9 @@ return newData
     .then(({ latitude, longitude }) => {
       setUserData((userData) => {
         const newData = { ...userData };
-        newData.currentLocation = {
-          latitude: latitude,
-          longitude: longitude,
+        newData.location.current = {
+          lat: latitude,
+          long: longitude,
         };
         return newData;
       });
@@ -147,8 +147,8 @@ return newData
         });
       } else {
         setRegion({
-          latitude: friendData.currentLocation.latitude,
-          longitude: friendData.currentLocation.longitude,
+          latitude: friendData.location.current.lat,
+          longitude: friendData.location.current.long,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         });

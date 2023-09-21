@@ -30,11 +30,11 @@ export default function JourneyMap({region,data,setRegion}){
         showsPointsOfInterest={true}
         showsUserLocation={true}
       >
-     <Marker coordinate={data.startPoint}/> 
-     <Marker coordinate={data.endPoint}/>
+     {/* <Marker coordinate={data.location.start}/> 
+     <Marker coordinate={data.location.end}/> */}
      <MapViewDirections
-      origin={data.startPoint}
-      destination={data.endPoint}
+      origin={data.location.start}
+      destination={data.location.end}
       apikey={GOOGLE_MAPS_APIKEY}
       strokeWidth={3}
     strokeColor="hotpink"
