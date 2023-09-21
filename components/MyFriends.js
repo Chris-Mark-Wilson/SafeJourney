@@ -36,17 +36,21 @@ export const MyFriends=({navigation})=>{
 
     const  handlePress =  (val) => {
       console.log(val)
-  //     console.log(val.name);
-  //      console.log(val.location.current);
-  //  console.log(val.location.start);
-  //     console.log(val.location.end);
-
-   
+  
      setFriendData((friendData)=>{
-      const newData = {...friendData}
-      console.log(newData, "newData")
+      let newData = {...friendData}
+      newData.currentLocation.latitude=val.location.current.lat
+      newData.currentLocation.longitude=val.location.current.longitude
+      newData.startPoint.latitude = val.location.start.lat
+      newData.startPoint.longitude = val.location.start.long
+      newData.endPoint.latitude = val.location.end.lat
+      newData.endPoint.longitude = val.location.end.long
+      newData.user_id=val.user_id
+      return newData
+
+
      }); 
-      // navigation.navigate('Home'); 
+      navigation.navigate('Home'); 
     
     }
         
