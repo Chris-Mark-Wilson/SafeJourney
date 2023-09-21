@@ -26,7 +26,7 @@ export default function JourneyMap({region,data,setRegion}){
           setRegion(region)
          
         }}
-      //   onPress={handlePress}
+        // onPress={handlePress}
         showsPointsOfInterest={true}
         showsUserLocation={true}
       >

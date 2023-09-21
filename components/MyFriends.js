@@ -19,26 +19,40 @@ export const MyFriends=({navigation})=>{
     const{friendData,setFriendData}=useContext(FriendContext)
 
     const [friends, setFriends] = useState([])
+ const [isLoading, setIsLoading] = useState(true)
 
-let friendsList=[]
     useEffect(()=> {
-        
+        setIsLoading(true)
         getFriends(userData.userId)
         .then((friendList) => {
            setFriends(() =>{
             return [...friendList]
            })
+           setIsLoading(false) 
            })
-            
+          
         
-    }, [userData.userId])
+    }, [])
 
-    const handlePress = (val) => {
+    const  handlePress =  (val) => {
+      console.log(val)
+  //     console.log(val.name);
+  //      console.log(val.location.current);
+  //  console.log(val.location.start);
+  //     console.log(val.location.end);
 
-        console.log(val)
+   
+     setFriendData((friendData)=>{
+      const newData = {...friendData}
+      console.log(newData, "newData")
+     }); 
+      // navigation.navigate('Home'); 
+    
     }
-
-    return(
+        
+    
+    return isLoading?<Text>Loading</Text>:
+    (
         <View style={appStyle.container}>
              <Text>My Friends</Text>
             {/* {friends.map((friend) => {
@@ -48,19 +62,23 @@ let friendsList=[]
           <FlatList
 
 data={friends}
-renderItem={({ item }) =>
-          item.location.status === true ? <Pressable onPress={()=>handlePress(item)} style={appStyle.pressable}><Item name={item.name} /></Pressable> : <Item name={item.name} />
+renderItem={({item }) =>
+          item.location.status === true ? 
+          <Pressable onPress={()=>handlePress(item)} style={appStyle.pressable}>
+            <Item name={item.name} />
+            </Pressable>
+             : <Item name={item.name} />
         }
-keyExtractor={item => item.name}
-// data={friends.map(friend=>{
-// return(friend.status==="travelling"?
+keyExtractor={item=> item.name}
+// data={items.map(item=>{
+// return(item.status==="travelling"?
 // (
-// <Pressable onPress={handlePress} value = {friend}>
-// <Text>{friend.name}</Text>
+// <Pressable onPress={handlePress} value = {item}>
+// <Text>{item.name}</Text>
 // </Pressable>
 // )
 // :
-// (<Text>{friend.name}</Text>)
+// (<Text>{item.name}</Text>)
 // )
 // })}
 />
