@@ -104,8 +104,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputView: {
-    backgroundColor: "#FFC0CB",
-    borderRadius: 30,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 5,
     width: "60%",
     height: 40,
     marginBottom: 10,
@@ -116,16 +118,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     marginLeft: 20,
+    
   },
   loginBtn: {
-    width: "80%",
+    width: "40%",
     borderRadius: 25,
-    height: 50,
+    height: 40,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
     marginBottom:60,
-    backgroundColor: "#FF1493",
+    backgroundColor: "gray",
   },
   textView: {
     margin: 10,
