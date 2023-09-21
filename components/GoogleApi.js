@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete"
 import{API_KEY} from '@env'
+import { StartJourney } from "./StartJourney";
+import { UserContext } from "../context/userContext";
 
-const GoogleApi = ({setApiLocation}) => { console.log("APIKEY>>>",API_KEY)
+const GoogleApi = () => { console.log("APIKEY>>>",API_KEY)
 
-const [apiLocation, setApiLocation] = useState({}) 
+const { userData } = useContext(UserContext);
+const [end, setEnd] = useState({})
 
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
       fetchDetails = {true}
         placeholder="Search for a destination"
-        onPress={(data, details = null) => {
-          console.log(details.geometry.location)
-          setApiLocation(details.geometry.location)
+        onPress={(_, details = null) => {
+          setEnd({lat:details.geometry.location.lat, long: details.geometry.location.lng})
         }}
         query={{
           key: API_KEY , 
@@ -26,6 +28,7 @@ const [apiLocation, setApiLocation] = useState({})
           textInput: styles.textInput,
         }}
       />
+      <StartJourney start={userData.location.current} end={end} />
     </View>
   );
 };

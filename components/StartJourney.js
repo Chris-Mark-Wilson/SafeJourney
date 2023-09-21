@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity} from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity, Alert} from "react-native"
 import { startJourney } from "../utils/api"
 import { useContext } from "react"
 import { UserContext } from "../context/userContext";
@@ -12,6 +12,7 @@ export function StartJourney({ start, end }) {
             showAlert('You have started your journey')
         }).catch((err) => {
             showAlert(err.response.data.msg)
+            
         })
     }
 
