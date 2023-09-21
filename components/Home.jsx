@@ -18,6 +18,7 @@ export const Home = () => {
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
 
+
   const [whosJourney, setWhosJourney] = useState("friend");
 
   const [region, setRegion] = useState(null);

@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete"
 import{API_KEY} from '@env'
-const GoogleApi = () => { console.log("APIKEY>>>",API_KEY)
+
+const GoogleApi = ({setApiLocation}) => { console.log("APIKEY>>>",API_KEY)
+
+const [apiLocation, setApiLocation] = useState({}) 
+
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
+      fetchDetails = {true}
         placeholder="Search for a destination"
         onPress={(data, details = null) => {
-          console.log("pressed",data, details);
+          console.log(details.geometry.location)
+          setApiLocation(details.geometry.location)
         }}
         query={{
           key: API_KEY , 
           language: "en", 
-          
+          types: "(cities)"
         }}
         onFail={(error)=>console.log(error)}
         styles={{
