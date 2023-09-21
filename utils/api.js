@@ -23,3 +23,8 @@ export const logIn = async (phoneNumber) => {
     const { data: {user} } = await axios.get(`${BASE_URL}/login/${phoneNumber}`)
     return user
 }
+
+export const addFriend = async (id, phoneNumber) => {
+    const { data: {acknowledged} } = await axios.patch(`${BASE_URL}/users/${id}/friends`, { phoneNumber })
+    return acknowledged
+}
