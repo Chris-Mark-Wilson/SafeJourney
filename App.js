@@ -5,17 +5,17 @@ import { View } from "react-native";
 import { MyFriends } from "./components/MyFriends";
 import { AddFriend } from "./components/AddFriend";
 import Header from "./components/Header";
-import { useState } from "react";
 import { Home } from "./components/Home";
 import { UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
+import { SignIn } from "./components/SignIn";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <FriendProvider>
-      <UserProvider>
+   <UserProvider> 
         <NavigationContainer>
           <View>
             <Header />
@@ -24,9 +24,10 @@ export default function App() {
             <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="My friends" component={MyFriends} />
             <Drawer.Screen name="Add friend" component={AddFriend} />
+            <Drawer.Screen name="Sign In" component={SignIn} />
           </Drawer.Navigator>
         </NavigationContainer>
-      </UserProvider>
-    </FriendProvider>
+        </UserProvider>
+        </FriendProvider>
   );
 }

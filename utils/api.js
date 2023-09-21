@@ -13,3 +13,13 @@ export const getFriends = (user_id) => {
      console.log(err,"< = error in api catch")
     })
 }
+
+export const signUp = async (name, phoneNumber) => {
+    const { data: {user} } = await axios.post(`${BASE_URL}/users`, {name, phoneNumber})
+    return user
+}
+
+export const logIn = async (phoneNumber) => {
+    const { data: {user} } = await axios.get(`${BASE_URL}/login/${phoneNumber}`)
+    return user
+}
