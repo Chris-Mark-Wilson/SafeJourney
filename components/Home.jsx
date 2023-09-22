@@ -7,6 +7,7 @@ import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { endJourney, getFriendById, updateJourney } from "../utils/api";
 import GoogleApi from "./GoogleApi";
+import {CancelJourney} from './CancelJourney'
 
 export const Home = () => {
   const timerInterval = 20000;
