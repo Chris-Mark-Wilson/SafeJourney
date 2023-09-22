@@ -1,4 +1,4 @@
-import { View, Text, Alert } from "react-native";
+import { View, Text, Button } from "react-native";
 import { appStyle } from "../styles/appStyle";
 import JourneyMap from "./JourneyMap";
 import { useEffect, useState, useContext } from "react";
@@ -14,7 +14,6 @@ export const Home = () => {
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
 
-
   const [whosJourney, setWhosJourney] = useState(null);
 
   const [region, setRegion] = useState(null);
@@ -23,13 +22,10 @@ export const Home = () => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    if(userData.location.status){
-
-      setWhosJourney("user")
-    }
-    else setWhosJourney(null)
+    if (userData.location.status) {
+      setWhosJourney("user");
+    } else setWhosJourney(null);
   }, []);
-
 
   //   useEffect(()=>{
   // setTimeout(()=>{
@@ -112,10 +108,10 @@ export const Home = () => {
   //   },[friendData])
 
   useEffect(() => {
-    if(friendData.location.status){
-      setWhosJourney("friend")
+    if (friendData.location.status) {
+      setWhosJourney("friend");
     }
-    
+
     if (whosJourney === "user" || whosJourney === null) {
       setIsLoading(true);
       getLocation(userData).then(({ latitude, longitude }) => {
@@ -134,20 +130,25 @@ export const Home = () => {
           longitudeDelta: 0.005,
         });
         setIsLoading(false);
-      })
+      });
     }
-      console.log(whosJourney)
-     if (whosJourney === "friend") {
-      console.log("here")
-        setRegion({
-          latitude: friendData.location.current.lat,
-          longitude: friendData.location.current.long,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005,
-        });
-
+    console.log(whosJourney,"<in use effect");
+    if (whosJourney === "friend") {
+      console.log("here");
+      setRegion({
+        latitude: friendData.location.current.lat,
+        longitude: friendData.location.current.long,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
     }
   }, [friendData]);
+
+  const handleReturn = () => {
+    setFriendData({});
+
+    setWhosJourney(userData.location.status ? "user" : null);
+  };
 
   return isLoading ? (
     <Text>Loading....</Text>
@@ -155,13 +156,20 @@ export const Home = () => {
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
         <JourneyMap region={region} data={friendData} setRegion={setRegion} />
-        
-        ) : (
-          <JourneyMap region={region} setRegion={setRegion} data={userData} />
-          )}
+      ) : (
+        <JourneyMap region={region} setRegion={setRegion} data={userData} />
+      )}
 
-    <Text style={appStyle.nameText}>{userData.name}</Text>
-          <GoogleApi />
+      {userData.name && whosJourney === "user" && (
+        <Text style={appStyle.nameText}>{userData.name}</Text>
+      )}
+      {whosJourney === "friend" && (
+        <Text style={appStyle.nameText}>{friendData.name}</Text>
+      )}
+      {whosJourney === "friend" && (
+        <Button title="return" onPress={handleReturn} />
+      )}
+      {whosJourney === null && <GoogleApi />}
     </View>
   );
 };
