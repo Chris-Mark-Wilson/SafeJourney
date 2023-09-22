@@ -14,7 +14,9 @@ export default function JourneyMap({region,data,setRegion}){
   const{userData}=useContext(UserContext)
   const {friendData}=useContext(FriendContext)
   const GOOGLE_MAPS_APIKEY = API_KEY;
-
+console.log(data,"<data")
+console.log(friendData,"<firendData")
+console.log(region)
     return(
       
         <MapView
