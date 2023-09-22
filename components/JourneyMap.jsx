@@ -46,6 +46,7 @@ console.log(region)
     strokeColor="hotpink"
   />}
       </MapView>
+      
      
     )
 }

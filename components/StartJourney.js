@@ -5,14 +5,20 @@ import { UserContext } from "../context/userContext";
 
 export function StartJourney({ start, end }) {
 
-    const { userData } = useContext(UserContext)
+    const { userData, setUserData } = useContext(UserContext)
 
     function onPress(){
         startJourney(userData.user_id, start, end).then(() => {
             showAlert('You have started your journey')
+            setUserData((currData) => {
+                const newData = JSON.parse(JSON.stringify(currData))
+                newData.location.status = true
+                newData.location.start = start
+                newData.location.end = end
+                return newData
+            })
         }).catch((err) => {
             showAlert(err.response.data.msg)
-            
         })
     }
 
