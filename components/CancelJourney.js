@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity} from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity, Alert} from "react-native"
 import { endJourney } from "../utils/api"
 import { useContext } from "react"
 import { UserContext } from "../context/userContext";
