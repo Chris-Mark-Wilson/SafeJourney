@@ -1,30 +1,39 @@
 import axios from 'axios'
 
+const users = axios.create({baseURL: `https://be-safejourney.onrender.com/api`})
 
-
-const BASE_URL = `https://be-safejourney.onrender.com/api`
-
-export const getFriends = (user_id) => {
-    return axios.get(`${BASE_URL}/users/${user_id}/friends`)
-    .then((response) => {
-        return response.data.friendList
-    })
-    .catch((err)=>{
-     console.log(err,"< = error in api catch")
-    })
+export const getFriends = async (id) => {
+    const { data: {friendList} } = await users.get(`/users/${id}/friends`)
+    return friendList
 }
 
 export const signUp = async (name, phoneNumber) => {
-    const { data: {user} } = await axios.post(`${BASE_URL}/users`, {name, phoneNumber})
+    const { data: {user} } = await users.post(`/users`, {name, phoneNumber})
     return user
 }
 
 export const logIn = async (phoneNumber) => {
-    const { data: {user} } = await axios.get(`${BASE_URL}/login/${phoneNumber}`)
+    const { data: {user} } = await users.get(`/login/${phoneNumber}`)
     return user
 }
 
 export const addFriend = async (id, phoneNumber) => {
-    const { data: {acknowledged} } = await axios.patch(`${BASE_URL}/users/${id}/friends`, { phoneNumber })
+    const { data: {acknowledged} } = await users.patch(`/users/${id}/friends`, { phoneNumber })
     return acknowledged
 }
+
+export const endJourney = async (id) => {
+    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { status: false })
+    return acknowledged
+}
+
+export const startJourney = async (id, start, end) => {
+    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { status: true, start, end })
+    return acknowledged
+}
+
+export const updateJourney = async (id, current) => {
+    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { current })
+    return acknowledged
+}
+
