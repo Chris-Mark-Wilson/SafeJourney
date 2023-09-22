@@ -5,6 +5,7 @@ export const appStyle = StyleSheet.create({
       backgroundColor: '#fff',
      // alignItems: 'center',
       justifyContent: 'start',
+      zIndex:0,
     },
     map: {
     //  top:40,

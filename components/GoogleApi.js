@@ -2,20 +2,20 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete"
 import{API_KEY} from '@env'
-const GoogleApi = () => { console.log("APIKEYYYYYY",API_KEY)
+const GoogleApi = () => { console.log("APIKEY>>>",API_KEY)
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         placeholder="Search for a destination"
         onPress={(data, details = null) => {
-          // Handle the selected destination here
-          console.log("pressed mefdfgdgfdgfdgfdgfdfcvbcbv",data, details);
+          console.log("pressed",data, details);
         }}
         query={{
-          key: "AIzaSyARh4RFtAdAJbWnIv2kytSV20LLnGeWic4", // Your Google Maps API key
-          language: "en", // Language preference
-          types: "(cities)", // Restrict results to cities
+          key: API_KEY , 
+          language: "en", 
+          
         }}
+        onFail={(error)=>console.log(error)}
         styles={{
           textInput: styles.textInput,
         }}
@@ -26,6 +26,7 @@ const GoogleApi = () => { console.log("APIKEYYYYYY",API_KEY)
 
 const styles = StyleSheet.create({
   container: {
+    zIndex: 1,
     flex: 1,
   },
   textInput: {
