@@ -3,17 +3,17 @@ import { createContext, useState } from "react";
 export const FriendContext = createContext();
 
 export const FriendProvider = ({children}) => {
-    const [friendData, setFriendData] = useState({   
-        user_id: 2,  
-        name: 'Chris W',  
-        phoneNumber: '07900000002',  
+    const [friendData, setFriendData] = useState({
+        user_id: null,  
+        name: null,  
+        phoneNumber: '07900000001',  
         location: {
-            status: true,
-            start: {lat: 53.810, long: -1.56},
-            current: {lat: 53.81168, long: -1.5618},
-            end: {lat: 53.81339, long: -1.5603}
-        },  
-    })
+            status: false,
+            start: {lat: null, long: null},
+            current: {lat: null, long: null},
+            end: {lat: null, long: null}
+    }
+})
 
     return (
         <FriendContext.Provider value={{friendData, setFriendData}}>

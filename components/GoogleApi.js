@@ -5,7 +5,7 @@ import{API_KEY} from '@env'
 import { StartJourney } from "./StartJourney";
 import { UserContext } from "../context/userContext";
 
-const GoogleApi = () => {
+const GoogleApi = () => { 
 
 const { userData } = useContext(UserContext);
 const [end, setEnd] = useState({})
