@@ -21,12 +21,6 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [timer, setTimer] = useState(0);
 
-  useEffect(() => {
-    if (userData.location.status) {
-      setWhosJourney("user");
-    } else setWhosJourney(null);
-  }, []);
-
   //   useEffect(()=>{
   // setTimeout(()=>{
   //   setTimer((timer)=>{
@@ -106,12 +100,7 @@ export const Home = () => {
   //          return whosJourney === "friend"? "user":"friend"
   //       })
   //   },[friendData])
-
   useEffect(() => {
-    if (friendData.location.status) {
-      setWhosJourney("friend");
-    }
-
     if (whosJourney === "user" || whosJourney === null) {
       setIsLoading(true);
       getLocation(userData).then(({ latitude, longitude }) => {
@@ -132,22 +121,42 @@ export const Home = () => {
         setIsLoading(false);
       });
     }
-    console.log(whosJourney,"<in use effect");
-    if (whosJourney === "friend") {
+  }, [whosJourney]);
+
+  useEffect(() => {
+    console.log(friendData.location,"top of use effect")
+    if (friendData.location.status) {
+      setWhosJourney("friend")
       console.log("here");
+
       setRegion({
         latitude: friendData.location.current.lat,
         longitude: friendData.location.current.long,
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
       });
+    } else {
+      setWhosJourney(userData.location.status ? "user" : null);
     }
+    console.log(whosJourney, "<in use effect");
+ 
   }, [friendData]);
 
   const handleReturn = () => {
-    setFriendData({});
 
-    setWhosJourney(userData.location.status ? "user" : null);
+    setFriendData((data)=>{
+const obj={   user_id: null,  
+  name: null,  
+  phoneNumber:null,  
+  location: {
+      status: false,
+      start: {lat: null, long: null},
+      current: {lat: null, long: null},
+      end: {lat: null, long: null}
+    }
+  }
+    return obj;
+})
   };
 
   return isLoading ? (
