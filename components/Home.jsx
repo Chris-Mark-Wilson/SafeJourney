@@ -19,27 +19,15 @@ export const Home = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [timer, setTimer] = useState(0);
-  ////////////TEST SET FREINDDATA///
+
   useEffect(() => {
-    // setFriendData((friend)=>{
-    //   let newData={...friend}
-    //   newData.currentLocation={
-    //   latitude:52.57559667266700,
-    //   longitude:-0.25841876864433500
-    // }
-    // newData.startPoint={
-    //   latitude:52.57559667266500,
-    //   longitude:-0.25841876864433000
-    // }
-    // newData.endPoint={
-    //   latitude:52.5775667265900,
-    //   longitude:-0.2584187686440000
-    // }
-    // newData.user_id = 3
-    // return newData
-    // })
+    if(userData.location.status){
+
+      setWhosJourney("user")
+    }
+    else setWhosJourney(null)
   }, []);
-  //////////////////////////////////
+
 
   //   useEffect(()=>{
   // setTimeout(()=>{
