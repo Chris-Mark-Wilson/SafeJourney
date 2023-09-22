@@ -37,3 +37,7 @@ export const updateJourney = async (id, current) => {
     return acknowledged
 }
 
+export const getFriendById = async (id) => {
+    const { data: {user} } = await users.get(`/users/${id}`)
+    return user
+}

@@ -5,15 +5,22 @@ import { UserContext } from "../context/userContext";
 
 export function CancelJourney() {
 
-    const { userData } = useContext(UserContext)
+    const { userData, setUserData } = useContext(UserContext)
 
-    function onPress(){
+    const onPress = () => {
         endJourney(userData.user_id).then(() => {
-            showAlert('You have cancelled your journey')
+          setUserData((currData) => {
+              const newData = JSON.parse(JSON.stringify(currData))
+              newData.location.status = false
+              newData.location.start = null
+              newData.location.end = null
+              return newData
+          })
+          showAlert('You have cancelled your journey')
         }).catch((err) => {
-            showAlert(err.response.data.msg)
+          showAlert('Could not cancel journey')
         })
-    }
+      };
 
     function showAlert(msg) {
         Alert.alert(msg)

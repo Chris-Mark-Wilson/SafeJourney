@@ -1,15 +1,15 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Alert } from "react-native";
 import { appStyle } from "../styles/appStyle";
 import JourneyMap from "./JourneyMap";
 import { useEffect, useState, useContext } from "react";
 import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
-import { getFriends } from "../utils/api";
+import { endJourney, getFriendById, updateJourney } from "../utils/api";
 import GoogleApi from "./GoogleApi";
 
 export const Home = () => {
-  const timerInterval = 10000;
+  const timerInterval = 20000;
 
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
@@ -21,85 +21,40 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [timer, setTimer] = useState(0);
 
-  //   useEffect(()=>{
-  // setTimeout(()=>{
-  //   setTimer((timer)=>{
-  //     return timer+1
-  //   })
-  // },timerInterval)
-  //   },[timer])
+    useEffect(()=>{
+      if(whosJourney)
+      setTimeout(()=>{
+        setTimer(timer+1)
+        },timerInterval)
+    },[timer])
 
-  // useEffect(()=>{
-  //   setIsLoading(true)
-  // if(whosJourney==="friend"){
-  // getFriends(2)
-  // .then(response=>{
+    useEffect(() => {
+      if(whosJourney==='user'){
+        getLocation(userData).then(({ latitude, longitude }) => {
+          setUserData((currUserData) => {
+            const newData = JSON.parse(JSON.stringify(currUserData));
+            newData.location.current = {
+              lat: latitude,
+              long: longitude,
+            };
+            return newData;
+          });
+          setRegion({
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          });
+          updateJourney(userData.user_id, { lat: latitude, long: longitude })
+        });
+      }
+      if(whosJourney==='friend'){
+        getFriendById(friendData.user_id).then((user) => {
+          setFriendData(user)
+        })
+      }
+    }, [timer])
 
-  //   const friend = response.filter(friend =>{
-  //     return friend.user_id === friendData.user_id
-  //   })[0]
-
-  /////////////////////This should be updated from response
-  // setFriendData((friendData)=>{
-  //   let newData={...friendData}
-  //   newData.currentLocation={
-  //   latitude:52.57559667266700,
-  //   longitude:-0.25841876864433500
-  // },
-  // newData.startPoint={
-  //   latitude:52.57559667266700,
-  //   longitude:-0.25841876864433500
-  // },
-  // newData.endPoint={
-  //   latitude:52.57559667266900,
-  //   longitude:-0.2584187686440000
-  // }
-  // newData.user_id = 2
-  // return newData
-  // })
-  /////////////////////
-  //  setFriendData(()=>{
-  //   let newData={...friend}
-  //   newData.currentLocation={
-  //   latitude:friend.location.current.latitude,
-  //   longitude:friend.location.current.longitude
-  // }
-  //return newData
-  // })
-  //     setIsLoading(false)
-  //   })
-  //   .catch(error =>{
-  //     console.log(error,"Error in home")
-
-  //   })
-  // }
-  //   },[friendData,timer])
-  //   useEffect(()=>{
-  //       setFriendData((friendData)=>{
-  //           const newData = {...friendData}
-  //           newData.currentLocation = {
-  //               latitude: 52.57559667266577,
-  //               longitude:-0.25841876864433294
-  //           }
-  //           return newData;
-
-  //      })
-
-  // // },[])
-
-  //   useEffect(()=>{
-  //       setRegion({
-  //           latitude: friendData.currentLocation.latitude,
-  //           longitude: friendData.currentLocation.longitude,
-  //           latitudeDelta: 0.005,
-  //           longitudeDelta: 0.005,
-
-  //       })
-  //       setWhosJourney((whosJourney)=>{
-
-  //          return whosJourney === "friend"? "user":"friend"
-  //       })
-  //   },[friendData])
   useEffect(() => {
     if (whosJourney === "user" || whosJourney === null) {
       setIsLoading(true);
@@ -142,6 +97,11 @@ export const Home = () => {
  
   }, [friendData]);
 
+  useEffect(() => {
+    setWhosJourney(userData.location.status ? "user" : null);
+  }, [userData])
+
+
   const handleReturn = () => {
 
     setFriendData((data)=>{
@@ -177,6 +137,9 @@ const obj={   user_id: null,
       )}
       {whosJourney === "friend" && (
         <Button title="return" onPress={handleReturn} />
+      )}
+      {whosJourney === "user" &&(
+        <CancelJourney/>
       )}
       {whosJourney === null && <GoogleApi />}
     </View>
