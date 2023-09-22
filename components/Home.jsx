@@ -156,6 +156,7 @@ export const Home = () => {
       <GoogleApi />
       {whosJourney === "friend" ? (
         <JourneyMap region={region} data={friendData} setRegion={setRegion} />
+        
       ) : (
         <JourneyMap region={region} setRegion={setRegion} data={userData} />
       )}
