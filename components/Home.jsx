@@ -153,15 +153,15 @@ export const Home = () => {
     <Text>Loading....</Text>
   ) : (
     <View style={appStyle.container}>
-      <GoogleApi />
       {whosJourney === "friend" ? (
         <JourneyMap region={region} data={friendData} setRegion={setRegion} />
         
-      ) : (
-        <JourneyMap region={region} setRegion={setRegion} data={userData} />
-      )}
+        ) : (
+          <JourneyMap region={region} setRegion={setRegion} data={userData} />
+          )}
 
     <Text style={appStyle.nameText}>{userData.name}</Text>
+          <GoogleApi />
     </View>
   );
 };

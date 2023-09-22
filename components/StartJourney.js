@@ -10,6 +10,7 @@ export function StartJourney({ start, end }) {
     function onPress(){
         startJourney(userData.user_id, start, end).then(() => {
             showAlert('You have started your journey')
+            
         }).catch((err) => {
             showAlert(err.response.data.msg)
             
