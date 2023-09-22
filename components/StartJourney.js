@@ -39,12 +39,14 @@ const styles = StyleSheet.create({
     },
     button:{
         width: "40%",
-        borderRadius: 10,
-        height: 50,
+        borderRadius: 25,
+        height: 40,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 10,
         marginBottom: 10,
+        marginRight: 10,
+        padding: 10,
         backgroundColor: "gray",
     }
 })

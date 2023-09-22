@@ -55,10 +55,6 @@ export const MyFriends = ({ navigation }) => {
   ) : (
     <View style={appStyle.container}>
       <Text>My Friends</Text>
-      {/* {friends.map((friend) => {
-                return (<Text>{friend.name}</Text>)
-            })}
-            */}
       <FlatList
         data={friends}
         renderItem={({ item }) =>
@@ -74,17 +70,6 @@ export const MyFriends = ({ navigation }) => {
           )
         }
         keyExtractor={(item) => item.name}
-        // data={items.map(item=>{
-        // return(item.status==="travelling"?
-        // (
-        // <Pressable onPress={handlePress} value = {item}>
-        // <Text>{item.name}</Text>
-        // </Pressable>
-        // )
-        // :
-        // (<Text>{item.name}</Text>)
-        // )
-        // })}
       />
     </View>
   );
