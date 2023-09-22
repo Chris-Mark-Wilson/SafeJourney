@@ -5,15 +5,17 @@ export const appStyle = StyleSheet.create({
       backgroundColor: '#fff',
      // alignItems: 'center',
       justifyContent: 'start',
+      zIndex:0,
     },
     map: {
     //  top:40,
         width: "100%",
         height: "80%",
       },
+    
     nameText:{
       position: "absolute",
-      top:"5%",
+      top:"15%",
       left:"40%",
       backgroundColor: "gray",
       color: "white",

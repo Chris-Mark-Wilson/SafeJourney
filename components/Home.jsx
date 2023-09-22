@@ -6,12 +6,14 @@ import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { getFriends } from "../utils/api";
+import GoogleApi from "./GoogleApi";
 
 export const Home = () => {
   const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
   const { friendData, setFriendData } = useContext(FriendContext);
+
 
   const [whosJourney, setWhosJourney] = useState(null);
 
@@ -151,13 +153,14 @@ export const Home = () => {
     <Text>Loading....</Text>
   ) : (
     <View style={appStyle.container}>
+      <GoogleApi />
       {whosJourney === "friend" ? (
         <JourneyMap region={region} data={friendData} setRegion={setRegion} />
       ) : (
         <JourneyMap region={region} setRegion={setRegion} data={userData} />
       )}
 
-      <Text style={appStyle.nameText}>{userData.name}</Text>
+    <Text style={appStyle.nameText}>{userData.name}</Text>
     </View>
   );
 };
