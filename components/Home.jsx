@@ -1,4 +1,4 @@
-import { View, Text, Button, Alert } from "react-native";
+import { View, Text, Button, ActivityIndicator } from "react-native";
 import { appStyle } from "../styles/appStyle";
 import JourneyMap from "./JourneyMap";
 import { useEffect, useState, useContext } from "react";
@@ -6,20 +6,23 @@ import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { endJourney, getFriendById, updateJourney } from "../utils/api";
+import { checkIfJourneyEnd } from '../utils/checkIfJourneyEnd'
 import GoogleApi from "./GoogleApi";
 import {CancelJourney} from './CancelJourney'
+import {SignIn} from './SignIn'
 
 export const Home = () => {
   const timerInterval = 20000;
 
   const { userData, setUserData } = useContext(UserContext);
+  if(!userData) return <SignIn/>
+
   const { friendData, setFriendData } = useContext(FriendContext);
-
+  
   const [whosJourney, setWhosJourney] = useState(null);
-
   const [region, setRegion] = useState(null);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
 
     useEffect(()=>{
@@ -46,7 +49,11 @@ export const Home = () => {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           });
-          updateJourney(userData.user_id, { lat: latitude, long: longitude })
+          if(checkIfJourneyEnd(userData)){
+            endJourney(userData.user_id)
+          } else {
+            updateJourney(userData.user_id, { lat: latitude, long: longitude })
+          }
         });
       }
       if(whosJourney==='friend'){
@@ -121,7 +128,7 @@ const obj={   user_id: null,
   };
 
   return isLoading ? (
-    <Text>Loading....</Text>
+    <ActivityIndicator size="large" color="grey" />
   ) : (
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
