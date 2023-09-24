@@ -1,5 +1,3 @@
-// require('dotenv').config({path: `${__dirname}/../.env.development`})
-
 import { appStyle } from "../styles/appStyle";
 import MapView from 'react-native-maps'
 import { PROVIDER_GOOGLE } from "react-native-maps";
@@ -33,8 +31,9 @@ console.log(region)
         showsUserLocation={true}
       >{data.location.status &&
         <>
-        <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}}/> 
-        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}}/>
+        <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}} pinColor = {"red"} title={"Start of Journey"}/> 
+        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"blue"} title={"Current Location"}/>
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
         </>}
 
      {data.location.status && 
