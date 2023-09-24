@@ -12,9 +12,9 @@ import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { getFriends } from "../utils/api";
 
-const Item = ({ name }) => (
-  <View style={styles.name}>
-    <Text style={styles.name}>{name}</Text>
+const Item = ({ name,isBold }) => (
+  <View >
+    <Text style={isBold ?styles.boldText:styles.normalText}>{name}</Text>
   </View>
 );
 
@@ -54,20 +54,25 @@ export const MyFriends = ({ navigation }) => {
     <Text>Loading</Text>
   ) : (
     <View style={appStyle.container}>
-      <Text>My Friends</Text>
-      <FlatList
+     <FlatList
         data={friends}
         renderItem={({ item }) =>
-          item.location.status === true ? (
-            <Pressable
-              onPress={() => handlePress(item)}
-              style={appStyle.pressable}
-            >
-              <Item name={item.name} />
-            </Pressable>
-          ) : (
-            <Item name={item.name} />
-          )
+        <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
+        {item.location.status === true ? (
+          <View style={styles.container}><Text>🟢</Text> 
+          <Pressable onPress={() => handlePress(item)}>
+          <Item name={item.name} isBold={item.location.status === true}/>
+        </Pressable></View>
+        ) : (
+          <View style={styles.container}>
+            <Text>🔴</Text>
+            <Item name={item.name}/>
+          </View>
+           
+        )}
+        
+      </View>
+         
         }
         keyExtractor={(item) => item.name}
       />
@@ -75,13 +80,44 @@ export const MyFriends = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    marginTop:10,
+    marginLeft:20,
+    display:"flex",
+    flexDirection:"row",
+    gap: 20,
+  },
   item: {
     backgroundColor: "white",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
   },
-  name: {
-    fontSize: 16,
+  pressable: {
+    flexDirection: 'row',
+    alignItems: 'center', 
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+   // backgroundColor: 'lightgreen',
+    borderRadius: 8,
+    marginVertical: 4, 
   },
+  nonPressable: {
+    flexDirection: 'row',
+    alignItems: 'center', 
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    //backgroundColor: 'lightcoral',
+    borderRadius: 8,
+    marginVertical: 4, 
+    
+  },
+  boldText:{
+    fontSize:16,
+    fontWeight: "bold"
+  },
+  normalText:{
+    fontSize:16,
+    opacity: 0.5
+  }
 });
