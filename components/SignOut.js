@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, TouchableOpacity} from "react-native"
 import { useContext } from "react"
 import { UserContext } from "../context/userContext";
 
-export function SignOut() {
+export function SignOut({ navigation }) {
 
     const { userData, setUserData } = useContext(UserContext)
 
     const onPress = () => {
         setUserData('')
+        navigation.navigate('Home');
       };
 
     return (
