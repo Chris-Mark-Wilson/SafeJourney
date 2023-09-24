@@ -28,7 +28,7 @@ const [end, setEnd] = useState({})
           textInput: styles.textInput,
         }}
       />
-      <StartJourney start={userData.location.current} end={end} />
+      {end.lat&&<StartJourney start={userData.location.current} end={end} />}
       
     </View>
   );
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     position:"absolute",
-    top:0,
+    top:'10%',
   },
   textInput: {
     height: 40,

@@ -5,19 +5,31 @@ import { useEffect, useState, useContext } from "react";
 import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
+import { FriendListContext } from "../context/friendListContext";
 import { endJourney, getFriendById, updateJourney } from "../utils/api";
 import { checkIfJourneyEnd } from '../utils/checkIfJourneyEnd'
 import GoogleApi from "./GoogleApi";
 import {CancelJourney} from './CancelJourney'
 import {SignIn} from './SignIn'
+import * as Notifications from 'expo-notifications';
+import { updateFriendList } from "../utils/updateFriendList";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 export const Home = () => {
-  const timerInterval = 20000;
+  const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
   if(!userData) return <SignIn/>
 
   const { friendData, setFriendData } = useContext(FriendContext);
+  const { friendList, setFriendList } = useContext(FriendListContext)
   
   const [whosJourney, setWhosJourney] = useState(null);
   const [region, setRegion] = useState(null);
@@ -26,11 +38,15 @@ export const Home = () => {
   const [timer, setTimer] = useState(0);
 
     useEffect(()=>{
-      if(whosJourney)
       setTimeout(()=>{
         setTimer(timer+1)
         },timerInterval)
     },[timer])
+
+    useEffect(() => {
+      updateFriendList(userData.user_id, friendList, setFriendList)
+    }, [timer, userData])
+
 
     useEffect(() => {
       if(whosJourney==='user'){
@@ -87,11 +103,8 @@ export const Home = () => {
   }, [whosJourney]);
 
   useEffect(() => {
-    console.log(friendData.location,"top of use effect")
     if (friendData.location.status) {
       setWhosJourney("friend")
-      console.log("here");
-
       setRegion({
         latitude: friendData.location.current.lat,
         longitude: friendData.location.current.long,
@@ -100,32 +113,26 @@ export const Home = () => {
       });
     } else {
       setWhosJourney(userData.location.status ? "user" : null);
-    }
-    console.log(whosJourney, "<in use effect");
- 
+    } 
   }, [friendData]);
 
   useEffect(() => {
     setWhosJourney(userData.location.status ? "user" : null);
   }, [userData])
 
-
   const handleReturn = () => {
-
-    setFriendData((data)=>{
-const obj={   user_id: null,  
-  name: null,  
-  phoneNumber:null,  
-  location: {
-      status: false,
+    setFriendData({   
+      user_id: null,  
+      name: null,  
+      phoneNumber:null,  
+      location: {
+          status: false,
       start: {lat: null, long: null},
       current: {lat: null, long: null},
       end: {lat: null, long: null}
-    }
-  }
-    return obj;
-})
-  };
+          }
+      })
+  } 
 
   return isLoading ? (
     <ActivityIndicator size="large" color="grey" />
