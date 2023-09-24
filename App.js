@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import { Home } from "./components/Home";
 import { UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
+import { FriendListProvider } from "./context/friendListContext";
 import { UserPage } from "./components/UserPage";
 import { SignOut } from "./components/SignOut";
 
@@ -16,7 +17,8 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <FriendProvider>
-   <UserProvider> 
+      <UserProvider> 
+        <FriendListProvider>
         <NavigationContainer>
           <View>
             <Header />
@@ -29,7 +31,8 @@ export default function App() {
             <Drawer.Screen name="Sign Out " component={SignOut} />
           </Drawer.Navigator>
         </NavigationContainer>
-        </UserProvider>
-        </FriendProvider>
+      </FriendListProvider>
+    </UserProvider>
+  </FriendProvider> 
   );
 }
