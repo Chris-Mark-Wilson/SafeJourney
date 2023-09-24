@@ -8,7 +8,8 @@ import Header from "./components/Header";
 import { Home } from "./components/Home";
 import { UserProvider } from "./context/userContext";
 import { FriendProvider } from "./context/friendContext";
-import { SignIn } from "./components/SignIn";
+import { UserPage } from "./components/UserPage";
+import { SignOut } from "./components/SignOut";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,7 +25,8 @@ export default function App() {
             <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="My friends" component={MyFriends} />
             <Drawer.Screen name="Add friend" component={AddFriend} />
-            <Drawer.Screen name="Sign In" component={SignIn} />
+            <Drawer.Screen name="My Profile " component={UserPage} />
+            <Drawer.Screen name="Sign Out " component={SignOut} />
           </Drawer.Navigator>
         </NavigationContainer>
         </UserProvider>
