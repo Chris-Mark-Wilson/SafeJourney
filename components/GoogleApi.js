@@ -28,7 +28,7 @@ const [end, setEnd] = useState({})
           textInput: styles.textInput,
         }}
       />
-      <StartJourney start={userData.location.current} end={end} />
+      {end.lat&&<StartJourney start={userData.location.current} end={end} />}
       
     </View>
   );
