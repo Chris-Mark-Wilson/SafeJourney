@@ -150,7 +150,9 @@ export const Home = () => {
         </View>
       )}
       {whosJourney === "friend" && (
-        <Text style={appStyle.nameText}>{friendData.name}'s Journey</Text>
+        <View style={appStyle.whosJourneyView}>
+          <Text style={appStyle.nameText}>{friendData.name}'s Journey</Text>
+        </View>
       )}
       {whosJourney === "friend" && (
         <View style={appStyle.centreContainer}>

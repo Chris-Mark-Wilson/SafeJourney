@@ -65,13 +65,13 @@ export const appStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 85,
     borderColor: "white",
-    position: 'relative'
+    position: "absolute",
+    top:"7%",
+    left:"40%"
   },
 
   nameText:{
-    position: "absolute",
-    top:"7%",
-    left:"40%",
+    
     backgroundColor: "blue",
     color: "white",
     
