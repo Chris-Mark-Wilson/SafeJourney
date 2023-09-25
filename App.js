@@ -11,6 +11,7 @@ import { FriendProvider } from "./context/friendContext";
 import { FriendListProvider } from "./context/friendListContext";
 import { UserPage } from "./components/UserPage";
 import { SignOut } from "./components/SignOut";
+import { Footer } from "./components/Footer";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,9 @@ export default function App() {
             <Drawer.Screen name="My Profile " component={UserPage} />
             <Drawer.Screen name="Sign Out " component={SignOut} />
           </Drawer.Navigator>
+          <View>
+            <Footer />
+          </View>
         </NavigationContainer>
       </FriendListProvider>
     </UserProvider>

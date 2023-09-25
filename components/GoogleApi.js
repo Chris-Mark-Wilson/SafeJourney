@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     position:"absolute",
-    top:'10%',
+    top:'7%',
   },
   textInput: {
     height: 40,

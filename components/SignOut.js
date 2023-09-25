@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { FriendListContext } from "../context/friendListContext";
+import { appStyle } from "../styles/appStyle";
 
 export function SignOut({ navigation }) {
 
@@ -28,24 +29,8 @@ export function SignOut({ navigation }) {
       };
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.text} >Sign Out</Text> 
+        <TouchableOpacity style={appStyle.button} onPress={onPress}>
+            <Text style={appStyle.buttonText} >Sign Out</Text> 
         </TouchableOpacity> 
     )
 }
-
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 15,
-    },
-    button:{
-        width: "40%",
-        borderRadius: 10,
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: "gray",
-    }
-})

@@ -29,14 +29,14 @@ export const MyFriends = ({ navigation }) => {
   };
 
   return (
-    <View style={appStyle.container}>
+    <View>
       
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
         renderItem={({ item }) => (
 
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
-            <View style={styles.container}><Text>🟢</Text> 
+            <View style={styles.container}><Text style={styles.statusLight}>🟢</Text> 
 
             <Pressable
               onPress={() => handlePress(item)}
@@ -56,7 +56,7 @@ export const MyFriends = ({ navigation }) => {
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
                <View style={styles.container}>
-            <Text>🔴</Text>
+            <Text style={styles.statusLight}>⚪</Text>
         <Item name={item.name} /></View></View>
         )}/>
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     paddingVertical: 8,
     paddingHorizontal: 16,
-   // backgroundColor: 'lightgreen',
+   backgroundColor: 'lightgreen',
     borderRadius: 8,
     marginVertical: 4, 
 
@@ -93,18 +93,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     paddingVertical: 8,
     paddingHorizontal: 16,
-    //backgroundColor: 'lightcoral',
+    backgroundColor: 'lightgray' ,
     borderRadius: 8,
     marginVertical: 4, 
     
   },
   boldText:{
-    fontSize:16,
+    fontSize:20,
     fontWeight: "bold"
   },
 
   normalText:{
-    fontSize:16,
+    fontSize:20,
     opacity: 0.5
+  },
+
+  statusLight: {
+    fontSize:20
   }
 });

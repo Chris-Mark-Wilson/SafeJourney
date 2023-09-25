@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Alert} from "react-native"
 import { endJourney } from "../utils/api"
 import { useContext } from "react"
 import { UserContext } from "../context/userContext";
+import { appStyle } from "../styles/appStyle";
 
 export function CancelJourney() {
 
@@ -27,24 +28,10 @@ export function CancelJourney() {
       }
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.text} >Cancel Journey</Text> 
+      <View style={appStyle.centreContainer}>
+        <TouchableOpacity style={appStyle.button} onPress={onPress}>
+            <Text style={appStyle.buttonText} >Cancel Journey</Text> 
         </TouchableOpacity> 
+      </View>
     )
 }
-
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 15,
-    },
-    button:{
-        width: "40%",
-        borderRadius: 10,
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: "gray",
-    }
-})
