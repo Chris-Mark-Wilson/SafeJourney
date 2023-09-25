@@ -25,6 +25,7 @@ newData.location.end.long=e.nativeEvent.coordinate.longitude
 const start=userData.location.start
 const end=userData.location.end
   startJourney(userData.user_id, start, end)
+  .catch(err=>{console.log(err,"err in journeymap ine 28")})
 }
 
   if(!data) console.log('NO DAta here!!');
