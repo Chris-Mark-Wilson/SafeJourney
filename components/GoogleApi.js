@@ -21,7 +21,7 @@ const [end, setEnd] = useState({})
         query={{
           key: API_KEY , 
           language: "en", 
-          types: "(cities)"
+          types: "address"
         }}
         onFail={(error)=>console.log(error)}
         styles={{

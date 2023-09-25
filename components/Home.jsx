@@ -6,7 +6,7 @@ import { getLocation } from "../utils/getLocation";
 import { UserContext } from "../context/userContext";
 import { FriendContext } from "../context/friendContext";
 import { FriendListContext } from "../context/friendListContext";
-import { endJourney, getFriendById, updateJourney } from "../utils/api";
+import { getFriendById, updateJourney } from "../utils/api";
 import { checkIfJourneyEnd } from '../utils/checkIfJourneyEnd'
 import GoogleApi from "./GoogleApi";
 import {CancelJourney} from './CancelJourney'
@@ -65,12 +65,12 @@ export const Home = () => {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           });
-          if(checkIfJourneyEnd(userData)){
-            endJourney(userData.user_id)
-          } else {
-            updateJourney(userData.user_id, { lat: latitude, long: longitude })
-          }
-        });
+          checkIfJourneyEnd(userData, setUserData).then(() => {
+            if(userData.location.status){
+              updateJourney(userData.user_id, { lat: latitude, long: longitude })
+            }
+          })
+        })
       }
       if(whosJourney==='friend'){
         getFriendById(friendData.user_id).then((user) => {
