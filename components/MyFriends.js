@@ -34,29 +34,36 @@ export const MyFriends = ({ navigation }) => {
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
         renderItem={({ item }) => (
+
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
             <View style={styles.container}><Text>🟢</Text> 
+
             <Pressable
               onPress={() => handlePress(item)}
              
             >
+
               <Item name={item.name} isBold={item.location.status === true} />
             </Pressable></View></View>
           ) 
         }
+
         keyExtractor={(item) => item.name}
       />
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
+
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
                <View style={styles.container}>
             <Text>🔴</Text>
         <Item name={item.name} /></View></View>
         )}/>
+
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     marginTop:10,
@@ -79,6 +86,7 @@ const styles = StyleSheet.create({
    // backgroundColor: 'lightgreen',
     borderRadius: 8,
     marginVertical: 4, 
+
   },
   nonPressable: {
     flexDirection: 'row',
@@ -94,9 +102,9 @@ const styles = StyleSheet.create({
     fontSize:16,
     fontWeight: "bold"
   },
+
   normalText:{
     fontSize:16,
     opacity: 0.5
   }
-
 });
