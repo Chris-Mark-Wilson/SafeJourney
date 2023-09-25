@@ -8,6 +8,7 @@ export function StartJourney({ start, end }) {
     const { userData, setUserData } = useContext(UserContext)
 
     function onPress(){
+        console.log("line 11 StartJourney.js pressed start, end= ",end)
         startJourney(userData.user_id, start, end).then(() => {
             showAlert('You have started your journey')
             setUserData((currData) => {
