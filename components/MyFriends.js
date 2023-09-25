@@ -41,9 +41,8 @@ export const MyFriends = ({ navigation }) => {
             >
               <Item name={item.name} />
             </Pressable>
-          ) 
-
-        }
+            </View>
+        )}
         keyExtractor={(item) => item.name}
       />
       <FlatList
@@ -57,6 +56,7 @@ export const MyFriends = ({ navigation }) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     marginTop:10,
