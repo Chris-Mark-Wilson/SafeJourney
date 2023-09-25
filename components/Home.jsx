@@ -14,20 +14,15 @@ import {SignIn} from './SignIn'
 import * as Notifications from 'expo-notifications';
 import { updateFriendList } from "../utils/updateFriendList";
 
-
-
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: true,
   })
+})
 
-});
-export const Home = () => {
-  
-  
+export const Home = () => {  
   const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
@@ -41,7 +36,6 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
   
-  // if(!userData) return <SignIn/>
     useEffect(()=>{
       setTimeout(()=>{
         setTimer(timer+1)
@@ -52,7 +46,6 @@ export const Home = () => {
       updateFriendList(userData.user_id, friendList, setFriendList)
       
     }, [timer, userData])
-
 
     useEffect(() => {
       if(whosJourney==='user'){
@@ -71,15 +64,13 @@ export const Home = () => {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           });
-          checkIfJourneyEnd(userData, setUserData).then(() => {
+          checkIfJourneyEnd({ userData, setUserData }).then(() => {
             if(userData.location.status){
               setTimeout(() => {
               updateJourney(userData.user_id, { lat: latitude, long: longitude })
               .then(() => {
-                console.log(latitude, longitude);
                 console.log('Updated current location <');
               }).catch((err) => {
-                console.log(latitude, longitude);
                 console.log('err did not update', '<');
               })
             }, 1000);
@@ -96,14 +87,14 @@ export const Home = () => {
             console.log('friend updated');
             setFriendData(user)
           }).catch((err) => {
-              console.log(err, '<<2');
+            console.log('cant update friend');
           })  
         }, 1000);
       }
     }, [timer])
 
   useEffect(() => {
-    if (whosJourney === "user" || whosJourney === null) {
+    if (whosJourney === null) {  //whosJourney === "user" || 
       setIsLoading(true);
       getLocation(userData).then(({ latitude, longitude }) => {
         setUserData((currUserData) => {
@@ -123,7 +114,7 @@ export const Home = () => {
         setIsLoading(false);
       });
     }
-  }, [whosJourney]);
+  }, [whosJourney, userData.user_id]);
 
   useEffect(() => {
     if (friendData.location.status) {
@@ -156,6 +147,8 @@ export const Home = () => {
       }
     })
   } 
+
+  if(!userData.user_id) return <SignIn/>
 
   return isLoading ? (
     <ActivityIndicator size="large" color="grey" />

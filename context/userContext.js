@@ -3,15 +3,16 @@ import { createContext, useState } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
-    const [userData, setUserData] = useState( { user_id: 2,  
-        name: 'Chris W',  
-        phoneNumber: '07900000002',  
+    const [userData, setUserData] = useState({ 
+        user_id: null,  
+        name: '',  
+        phoneNumber: '',  
         location: { status: false,     
-                    start: {lat: 0, long: 0},    
-                    current: {lat: 0, long: 0},    
-                    end: {lat: 0, long: 0}  
+                    start: {lat: null, long: null},    
+                    current: {lat: null, long: null},    
+                    end: {lat: null, long: null}  
                 },  
-        friendList: [1,3,4,5,6]
+        friendList: []
     })
     return (
         <UserContext.Provider value={{userData, setUserData}}>
