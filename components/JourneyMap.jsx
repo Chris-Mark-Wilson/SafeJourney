@@ -4,8 +4,41 @@ import { PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import{ Marker}  from 'react-native-maps'
 import{ API_KEY } from '@env'
-
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import { startJourney } from "../utils/api";
+import { Alert } from "react-native";
 export default function JourneyMap({region,data,setRegion}){
+  const {userData,setUserData}=useContext(UserContext)
+  function showAlert(msg) {
+    Alert.alert(msg)
+}
+const onPressHandler=(e)=>{
+  console.log(e.nativeEvent.coordinate)
+
+  setUserData((oldData)=>{
+    const newData=JSON.parse(JSON.stringify(oldData))
+    newData.location.end.lat=e.nativeEvent.coordinate.latitude
+newData.location.end.long=e.nativeEvent.coordinate.longitude
+    return newData
+  })
+const start=userData.location.start
+const end=userData.location.end
+  startJourney(userData.user_id, start, end).then(() => {
+    showAlert('You have started your journey')
+    setUserData((currData) => {
+        const newData = JSON.parse(JSON.stringify(currData))
+        newData.location.status = true
+        newData.location.start = start
+        newData.location.end = end
+        return newData
+    })
+}).catch((err) => {
+    console.log('Error Here <<<');
+    // showAlert(err.response.data.msg)
+})
+}
+
   if(!data) console.log('NO DAta here!!');
     return(
       
@@ -14,6 +47,7 @@ export default function JourneyMap({region,data,setRegion}){
         provider={PROVIDER_GOOGLE}
         style={appStyle.map}
         region={region}
+        onPress={onPressHandler}
         onRegionChange={() => {
           setRegion(region)
          

@@ -23,7 +23,7 @@ Notifications.setNotificationHandler({
 });
 
 export const Home = () => {
-  const timerInterval = 20000;
+  const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
   if(!userData) return <SignIn/>
