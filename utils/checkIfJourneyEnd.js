@@ -1,7 +1,7 @@
 import { endJourney } from "../utils/api";
 
 export const checkIfJourneyEnd = async (userData, setUserData) => {
-    console.log('in check end');
+
     const current = userData.location.current
     const end = userData.location.end
 

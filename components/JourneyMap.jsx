@@ -2,19 +2,11 @@ import { appStyle } from "../styles/appStyle";
 import MapView from 'react-native-maps'
 import { PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { useContext } from "react";
-import { UserContext } from "../context/userContext";
-import { FriendContext } from "../context/friendContext";
-import{Marker} from 'react-native-maps'
-import{API_KEY} from '@env'
+import{ Marker}  from 'react-native-maps'
+import{ API_KEY } from '@env'
 
 export default function JourneyMap({region,data,setRegion}){
-  const{userData}=useContext(UserContext)
-  const {friendData}=useContext(FriendContext)
-  const GOOGLE_MAPS_APIKEY = API_KEY;
-console.log(data,"<data")
-console.log(friendData,"<firendData")
-console.log(region)
+  if(!data) console.log('NO DAta here!!');
     return(
       
         <MapView
@@ -40,7 +32,7 @@ console.log(region)
      <MapViewDirections
       origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
       destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
-      apikey={GOOGLE_MAPS_APIKEY}
+      apikey={API_KEY}
       strokeWidth={3}
     strokeColor="hotpink"
   />}

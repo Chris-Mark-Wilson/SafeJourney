@@ -23,7 +23,7 @@ Notifications.setNotificationHandler({
 });
 
 export const Home = () => {
-  const timerInterval = 10000;
+  const timerInterval = 20000;
 
   const { userData, setUserData } = useContext(UserContext);
   if(!userData) return <SignIn/>
@@ -67,15 +67,29 @@ export const Home = () => {
           });
           checkIfJourneyEnd(userData, setUserData).then(() => {
             if(userData.location.status){
+              setTimeout(() => {
               updateJourney(userData.user_id, { lat: latitude, long: longitude })
+              .then(() => {
+                console.log(latitude, longitude);
+                console.log('Updated current location <');
+              }).catch((err) => {
+                console.log(latitude, longitude);
+                console.log('err did not update', '<');
+              })
+            }, 1000);
             }
           })
         })
       }
       if(whosJourney==='friend'){
-        getFriendById(friendData.user_id).then((user) => {
-          setFriendData(user)
-        })
+        setTimeout(() => {
+          getFriendById(friendData.user_id).then((user) => {
+            console.log('friend updated');
+            setFriendData(user)
+          }).catch((err) => {
+              console.log(err, '<<2');
+          })  
+        }, 1000);
       }
     }, [timer])
 
@@ -126,12 +140,12 @@ export const Home = () => {
       name: null,  
       phoneNumber:null,  
       location: {
-          status: false,
-      start: {lat: null, long: null},
-      current: {lat: null, long: null},
-      end: {lat: null, long: null}
-          }
-      })
+        status: false,
+        start: {lat: null, long: null},
+        current: {lat: null, long: null},
+        end: {lat: null, long: null}
+      }
+    })
   } 
 
   return isLoading ? (

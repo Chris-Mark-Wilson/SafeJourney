@@ -8,7 +8,7 @@ export function StartJourney({ start, end }) {
     const { userData, setUserData } = useContext(UserContext)
 
     function onPress(){
-        console.log("line 11 StartJourney.js pressed start, end= ",end)
+
         if(!start || !end){
             showAlert('Please input a destination')
         } else {
@@ -22,7 +22,8 @@ export function StartJourney({ start, end }) {
                     return newData
                 })
             }).catch((err) => {
-                showAlert(err.response.data.msg)
+                console.log('Error Here <<<');
+                // showAlert(err.response.data.msg)
             })
         }
     }
