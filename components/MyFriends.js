@@ -3,14 +3,13 @@ import {
   Text,
   FlatList,
   Pressable,
-  SectionList,
   StyleSheet,
 } from "react-native";
 import { appStyle } from "../styles/appStyle";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context/userContext";
+import { useContext } from "react";
 import { FriendContext } from "../context/friendContext";
-import { getFriends } from "../utils/api";
+import { FriendListContext } from "../context/friendListContext";
+
 
 const Item = ({ name,isBold }) => (
   <View >
@@ -19,62 +18,41 @@ const Item = ({ name,isBold }) => (
 );
 
 export const MyFriends = ({ navigation }) => {
-  const { userData, setUserData } = useContext(UserContext);
+
   const { friendData, setFriendData } = useContext(FriendContext);
 
-  const [friends, setFriends] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    getFriends(userData.user_id)
-      .then((friendList) => {
-        setFriends(() => {
-          return [...friendList];
-        });
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err),"err in catch Myfriends";
-      });
-  }, []);
+  const { friendList, setFriendList } = useContext(FriendListContext)
 
   const handlePress = (val) => {
-    console.log(val);
-
-    setFriendData((friend) => {
-      let newData = { ...val };
-
-      return newData;
-    });
+    setFriendData({ ...val });
     navigation.navigate('Home');
   };
 
-  return isLoading ? (
-    <Text>Loading</Text>
-  ) : (
+  return (
     <View style={appStyle.container}>
-     <FlatList
-        data={friends}
-        renderItem={({ item }) =>
-        <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
-        {item.location.status === true ? (
-          <View style={styles.container}><Text>🟢</Text> 
-          <Pressable onPress={() => handlePress(item)}>
-          <Item name={item.name} isBold={item.location.status === true}/>
-        </Pressable></View>
-        ) : (
-          <View style={styles.container}>
+      <Text>My Friends</Text>
+      <FlatList
+        data={friendList.filter(friend => friend.location.status)}
+        renderItem={({ item }) => (
+           <View style={styles.container}><Text>🟢</Text> 
+            <Pressable
+              onPress={() => handlePress(item)}
+              style={appStyle.pressable}
+            >
+              <Item name={item.name} />
+            </Pressable>
+          ) 
+
+        }
+        keyExtractor={(item) => item.name}
+      />
+      <FlatList
+        data={friendList.filter(friend => !friend.location.status)}
+        renderItem={({ item }) =>           <View style={styles.container}>
             <Text>🔴</Text>
             <Item name={item.name}/>
           </View>
-           
-        )}
-        
-      </View>
-         
         }
-        keyExtractor={(item) => item.name}
       />
     </View>
   );

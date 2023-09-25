@@ -6,7 +6,7 @@ export const FriendProvider = ({children}) => {
     const [friendData, setFriendData] = useState({
         user_id: null,  
         name: null,  
-        phoneNumber: '07900000001',  
+        phoneNumber: '',  
         location: {
             status: false,
             start: {lat: null, long: null},
