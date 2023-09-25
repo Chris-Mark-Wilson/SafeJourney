@@ -30,29 +30,36 @@ export const MyFriends = ({ navigation }) => {
 
   return (
     <View style={appStyle.container}>
-      <Text>My Friends</Text>
+      
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
         renderItem={({ item }) => (
-           <View style={styles.container}><Text>🟢</Text> 
+
+          <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
+            <View style={styles.container}><Text>🟢</Text> 
+
             <Pressable
               onPress={() => handlePress(item)}
-              style={appStyle.pressable}
+             
             >
-              <Item name={item.name} />
-            </Pressable>
-            </View>
-        )}
+
+              <Item name={item.name} isBold={item.location.status === true} />
+            </Pressable></View></View>
+          ) 
+        }
+
         keyExtractor={(item) => item.name}
       />
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
-        renderItem={({ item }) =>           <View style={styles.container}>
+
+        renderItem={({ item }) => (
+          <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
+               <View style={styles.container}>
             <Text>🔴</Text>
-            <Item name={item.name}/>
-          </View>
-        }
-      />
+        <Item name={item.name} /></View></View>
+        )}/>
+
     </View>
   );
 };
@@ -79,6 +86,7 @@ const styles = StyleSheet.create({
    // backgroundColor: 'lightgreen',
     borderRadius: 8,
     marginVertical: 4, 
+
   },
   nonPressable: {
     flexDirection: 'row',
@@ -94,6 +102,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     fontWeight: "bold"
   },
+
   normalText:{
     fontSize:16,
     opacity: 0.5
