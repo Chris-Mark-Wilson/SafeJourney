@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   normalText:{
     fontSize:20,
     opacity: 0.5,
-    fontFamily:"Didot"
+    // fontFamily:"Didot"
   },
 
   statusLight: {
