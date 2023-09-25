@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator} from "react-native";
 import { logIn, signUp } from "../utils/api";
 import { UserContext } from "../context/userContext";
 import { ScrollView } from "react-native-gesture-handler";
@@ -10,20 +10,23 @@ export function SignIn({navigation}) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [logInNumber, setLogInNumber] = useState('')
   const {userData, setUserData} = useContext(UserContext)
+  const [isLoading, setIsLoading] = useState(false);
 
   function onPressSignIn() {
     if(!name || !phoneNumber){
       showAlert('Please enter a Name and Phone Number')
     } else {
-      signUp(name, phoneNumber)
-      .then((user) => {
-         setUserData(user)
-         setPhoneNumber('')
-         setName('')
-         navigation.navigate('Home')
+      setIsLoading(true)
+      signUp(name, phoneNumber).then((user) => {
+        setIsLoading(false)
+        setUserData(user)
+        setPhoneNumber('')
+        setName('')
+        navigation.navigate('Home')
       })
       .catch((err) => {
-        console.log(err)
+        setIsLoading(false)
+        showAlert(err.response.data.msg)
       })
     }
   }
@@ -32,12 +35,15 @@ export function SignIn({navigation}) {
     if(!logInNumber){
       showAlert('Please enter your Phone Number')
     } else {
+      setIsLoading(true)
       logIn(logInNumber).then((user) => {
+        setIsLoading(false)
         setUserData(user)
         setLogInNumber('')
         navigation.navigate('Home')
       })
      .catch((err) => {
+      setIsLoading(false)
         showAlert(err.response.data.msg)
       })
     }
@@ -47,7 +53,9 @@ export function SignIn({navigation}) {
     Alert.alert(msg)
   }
 
-  return (
+  return isLoading ? (
+      <ActivityIndicator size="large" color="grey" />
+    ) : (
     <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
       <StatusBar style="auto" />

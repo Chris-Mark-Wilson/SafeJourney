@@ -9,18 +9,22 @@ export function StartJourney({ start, end }) {
 
     function onPress(){
         console.log("line 11 StartJourney.js pressed start, end= ",end)
-        startJourney(userData.user_id, start, end).then(() => {
-            showAlert('You have started your journey')
-            setUserData((currData) => {
-                const newData = JSON.parse(JSON.stringify(currData))
-                newData.location.status = true
-                newData.location.start = start
-                newData.location.end = end
-                return newData
+        if(!start || !end){
+            showAlert('Please input a destination')
+        } else {
+            startJourney(userData.user_id, start, end).then(() => {
+                showAlert('You have started your journey')
+                setUserData((currData) => {
+                    const newData = JSON.parse(JSON.stringify(currData))
+                    newData.location.status = true
+                    newData.location.start = start
+                    newData.location.end = end
+                    return newData
+                })
+            }).catch((err) => {
+                showAlert(err.response.data.msg)
             })
-        }).catch((err) => {
-            showAlert(err.response.data.msg)
-        })
+        }
     }
 
     function showAlert(msg) {

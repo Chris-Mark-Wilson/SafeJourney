@@ -21,7 +21,7 @@ const [end, setEnd] = useState({})
         query={{
           key: API_KEY , 
           language: "en", 
-          types: "(cities)"
+          types: "address"
         }}
         onFail={(error)=>console.log(error)}
         styles={{
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     position:"absolute",
-    top:"10%",
+    top:'10%',
   },
   textInput: {
     height: 40,
