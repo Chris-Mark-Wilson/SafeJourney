@@ -12,7 +12,11 @@ export const getLocation = async (userData)=>{
   }
 
   if(userData.locationPermission){
-    const {coords:{latitude,longitude}} = await Location.getCurrentPositionAsync({})
+    try{const {coords:{latitude,longitude}} = await Location.getCurrentPositionAsync({})
     return ({latitude,longitude})
+  }
+  catch(err){
+    console.log(err)
+  }
   }
 }

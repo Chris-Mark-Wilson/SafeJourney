@@ -14,29 +14,34 @@ import {SignIn} from './SignIn'
 import * as Notifications from 'expo-notifications';
 import { updateFriendList } from "../utils/updateFriendList";
 
+
+
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: true,
-  }),
-});
+  })
 
+});
 export const Home = () => {
+  
+  
   const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
-  if(!userData) return <SignIn/>
-
+  
   const { friendData, setFriendData } = useContext(FriendContext);
   const { friendList, setFriendList } = useContext(FriendListContext)
   
   const [whosJourney, setWhosJourney] = useState(null);
   const [region, setRegion] = useState(null);
-
+  
   const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
-
+  
+  // if(!userData) return <SignIn/>
     useEffect(()=>{
       setTimeout(()=>{
         setTimer(timer+1)
@@ -45,6 +50,7 @@ export const Home = () => {
 
     useEffect(() => {
       updateFriendList(userData.user_id, friendList, setFriendList)
+      
     }, [timer, userData])
 
 
@@ -79,6 +85,9 @@ export const Home = () => {
             }, 1000);
             }
           })
+        })
+        .catch(err=>{
+          console.log(err)
         })
       }
       if(whosJourney==='friend'){

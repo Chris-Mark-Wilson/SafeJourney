@@ -24,19 +24,7 @@ newData.location.end.long=e.nativeEvent.coordinate.longitude
   })
 const start=userData.location.start
 const end=userData.location.end
-  startJourney(userData.user_id, start, end).then(() => {
-    showAlert('You have started your journey')
-    setUserData((currData) => {
-        const newData = JSON.parse(JSON.stringify(currData))
-        newData.location.status = true
-        newData.location.start = start
-        newData.location.end = end
-        return newData
-    })
-}).catch((err) => {
-    console.log('Error Here <<<');
-    // showAlert(err.response.data.msg)
-})
+  startJourney(userData.user_id, start, end)
 }
 
   if(!data) console.log('NO DAta here!!');
