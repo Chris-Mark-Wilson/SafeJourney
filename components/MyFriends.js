@@ -4,12 +4,14 @@ import {
   FlatList,
   Pressable,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { appStyle } from "../styles/appStyle";
 import { useContext } from "react";
 import { FriendContext } from "../context/friendContext";
 import { FriendListContext } from "../context/friendListContext";
 import { ScrollView } from "react-native-gesture-handler";
+import { removeFriend } from "../utils/api";
 
 
 const Item = ({ name,isBold }) => (
@@ -25,40 +27,71 @@ export const MyFriends = ({ navigation }) => {
   const { friendList, setFriendList } = useContext(FriendListContext)
 
   const handlePress = (val) => {
-    setFriendData({ ...val });
+    setFriendList({ ...val });
     navigation.goBack();
   };
 
+  const handlePressDeleteFriend = (val) => {
+    removeFriend(val.user_id).then((friendList) => {
+      console.log('friendList >> ', friendList)
+      setFriendList({ ...friendList }); 
+      // need to complete
+      showAlert(`Your friend has been removed`)
+    })
+    .catch((err) => {
+      showAlert('Could not remove friend')
+    })
+  };
+  
+  function showAlert(msg) {
+    Alert.alert(msg)
+}
+
   return (
     <View style={styles.background}>
-<View  style={styles.listContainer}>
-
-      <FlatList
-        data={friendList.filter(friend => friend.location.status)}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
+      <View>
+        <FlatList
+          data={friendList.filter(friend => friend.location.status)}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <>
+            <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
             <View style={styles.container}>
               <Text style={styles.statusLight}>🟢</Text> 
               <Pressable onPress={() => handlePress(item)}>
                 <Item name={item.name} isBold={item.location.status === true} />
               </Pressable>
+
             </View>
             </View>
-          ) 
-        }
+              <Pressable onPress={() => handlePressDeleteFriend(item)}>
+              <View style={styles.deletePressable}>
+                <Text style={styles.crossSymbol}>❌</Text>
+              </View>
+              </Pressable>
+            </>
+          )}
         />
-        </View>
-<View  style={styles.listContainer}>
+      </View>
+    <View>
 
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
+          <>
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
-               <View style={styles.container}>
-            <Text style={styles.statusLight}>⚪</Text>
-        <Item name={item.name} /></View></View>
+            <View style={styles.container}>
+              <Text style={styles.statusLight}>⚪</Text>
+              <Item name={item.name} />
+              <Pressable onPress={() => handlePressDeleteFriend(item)}>
+              <View style={styles.deletePressable}>
+                <Text style={styles.crossSymbol}>❌</Text>
+              </View>
+              </Pressable>
+            </View>
+          </View>
+          </>
         )}/>
 
         </View>
@@ -74,10 +107,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: "#fff",
   },
-
-  listContainer: {
-//  height: 'fitContent'
-  },
   
   container: {
     marginLeft:20,
@@ -87,6 +116,7 @@ const styles = StyleSheet.create({
   },
   
   pressable: {
+    width: '50%',
     flexDirection: 'row',
     alignItems: 'center', 
     paddingTop:15,
@@ -97,6 +127,7 @@ const styles = StyleSheet.create({
 
   },
   nonPressable: {
+    width: '50%',
     flexDirection: 'row',
     alignItems: 'center', 
     paddingTop:15,
@@ -122,5 +153,28 @@ const styles = StyleSheet.create({
 
   statusLight: {
     fontSize:18
+  },
+  deletePressable: {
+    // width: '50%',
+    flexDirection: 'row',
+    alignItems: 'center', 
+    padding: 15,
+    backgroundColor: "pink",
+    borderRadius: 100,
+    marginVertical: 4, 
+
+
+    // marginLeft:20,
+    // display:"flex",
+    // flexDirection:"row",
+    // gap: 15,
+    // backgroundColor: 'pink',
+    // borderRadius: 100,
+  },
+
+  crossSymbol: {
+    fontSize:18,
+    // backgroundColor: 'pink',
+    // borderRadius: 100,
   }
 });

@@ -29,7 +29,7 @@ export const AddFriend=()=>{
   return(
     <View style={appStyle.appBackground}>
       <View style={appStyle.centreContainer}>
-          <Text style={appStyle.headingText}></Text>
+          <Text style={appStyle.headingText}>Connect user</Text>
           <View style={styles.inputView}>
               <TextInput
                 // style={styles.TextInput}

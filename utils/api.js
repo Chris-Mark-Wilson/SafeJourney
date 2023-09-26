@@ -44,6 +44,16 @@ export const addFriend = async (id, phoneNumber) => {
     }
 }
 
+export const removeFriend = async (id) => {
+    try{const response = await users.patch(`/users/${id}/friends`, { id })
+    if(!response.data) console.log("no data in removefriend")
+    return response.data.acknowledged}
+    catch(err){
+        console.log(err,"err in removeFriend")
+        throw err
+    }
+}
+
 export const endJourney = async (id) => {
     try{const response = await users.patch(`/users/${id}/location`, { status: false })
     if(!response.data) console.log("no data in endjourney")
