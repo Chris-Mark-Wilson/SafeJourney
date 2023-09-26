@@ -173,7 +173,7 @@ export const Home = () => {
       {whosJourney === "friend" && (
         <View style={appStyle.centreContainer}>
         <TouchableOpacity style={appStyle.button} onPress={handleReturn}>
-        <Text style={appStyle.buttonText} >Return</Text> 
+        <Text style={appStyle.buttonText} >Return To Home</Text> 
         </TouchableOpacity> 
         </View>
       )}
