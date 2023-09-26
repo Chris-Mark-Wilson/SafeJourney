@@ -25,19 +25,7 @@ if(!data) return(<Text>promise rejection here</Text>)
   }
 
   return(
-    <MapView
-      showsMyLocationButton={true}
-      provider={PROVIDER_GOOGLE}
-      style={appStyle.map}
-      region={region}
-      onPress={onPressHandler}
-      onRegionChange={() => {
-        setRegion(region)
-       
-      }}
-      showsPointsOfInterest={true}
-      showsUserLocation={true}
-      >
+    
 
       
         <MapView
