@@ -25,13 +25,13 @@ export const appStyle = StyleSheet.create({
     headingText: {
       fontSize: 20,
       margin: 10,
-      fontFamily:"Didot"
+     
     },
     headingUserText: {
       fontSize: 20,
       marginBottom: 10,
       fontWeight: 'bold',
-      fontFamily:"Didot"
+      
     },
 
     button:{
@@ -49,7 +49,7 @@ export const appStyle = StyleSheet.create({
       fontSize: 15,
       fontWeight: 'bold',
       color: 'white',
-      fontFamily:"Didot"
+      
   },
 
   // custom styling
@@ -84,7 +84,7 @@ export const appStyle = StyleSheet.create({
     textAlign: "center",
     padding:"2%",
     margin:'auto',
-    fontFamily:"Didot"
+   
   },
   pressable: {
     backgroundColor: "green"
