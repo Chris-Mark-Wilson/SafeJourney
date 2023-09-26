@@ -29,7 +29,6 @@ export default function App() {
             <Drawer.Screen name="My friends" component={MyFriends} />
             <Drawer.Screen name="Add friend" component={AddFriend} />
             <Drawer.Screen name="My Profile " component={UserPage} />
-            <Drawer.Screen name="Sign Out " component={SignOut} />
           </Drawer.Navigator>
           <View>
             <Footer />

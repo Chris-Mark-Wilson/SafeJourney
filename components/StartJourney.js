@@ -4,13 +4,15 @@ import { useContext } from "react"
 import { UserContext } from "../context/userContext";
 import { appStyle } from "../styles/appStyle";
 
-export function StartJourney({ start, end }) {
+export function StartJourney() {
 
     const { userData, setUserData } = useContext(UserContext)
 
     function onPress(){
-        console.log("line 11 StartJourney.js pressed start, end= ",end)
-        if(!start || !end){
+        const start = userData.location.current
+        const end = userData.location.end
+
+        if(!start.lat || !end.lat){
             showAlert('Please input a destination')
         } else {
             startJourney(userData.user_id, start, end).then(() => {
@@ -23,7 +25,7 @@ export function StartJourney({ start, end }) {
                     return newData
                 })
             }).catch((err) => {
-                showAlert(err.response.data.msg)
+                console.log(err.response.data.msg, 'Error Here <<<');
             })
         }
     }
