@@ -100,12 +100,14 @@ const styles = StyleSheet.create({
   },
   boldText:{
     fontSize:20,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily:"Didot"
   },
 
   normalText:{
     fontSize:20,
-    opacity: 0.5
+    opacity: 0.5,
+    fontFamily:"Didot"
   },
 
   statusLight: {
