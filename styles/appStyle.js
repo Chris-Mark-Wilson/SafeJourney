@@ -28,8 +28,9 @@ export const appStyle = StyleSheet.create({
     },
     headingUserText: {
       fontSize: 20,
-      margin: 10,
+      marginBottom: 10,
       fontWeight: 'bold',
+     
     },
 
     button:{
@@ -93,10 +94,16 @@ export const appStyle = StyleSheet.create({
   },
 
     // journeyMap component
-    map: {
-        width: "100%",
-        height: "90%",
-      },
-    
-    
-  });
+  map:{
+    width: "100%",
+    height: "90%",
+  },
+ 
+  userContent:{
+    paddingLeft:20,
+    paddingTop: 20,
+    paddingBottom: 10,
+   // backgroundColor:"#E5D0E3"
+
+  }
+});
