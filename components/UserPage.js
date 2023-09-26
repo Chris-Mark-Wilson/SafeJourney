@@ -10,13 +10,20 @@ export function UserPage ({ navigation }) {
 
  return (
     <View style={appStyle.container}>
-        <Text style={appStyle.headingText}>
-            Name: {userData.name}
-        </Text>
-        <Text style={appStyle.headingText}>
-            Phone Number: {userData.phoneNumber}
+        <Text style = {appStyle.userContent}>
+            <Text style={appStyle.headingUserText}>
+                Name:</Text> <Text style={appStyle.headingText}>{userData.name}</Text>
+            </Text>
+
+            <Text style = {appStyle.userContent}>
+            <Text style={appStyle.headingUserText}>
+                Mobile Number:</Text> <Text style={appStyle.headingText}>{userData.phoneNumber}
+            </Text>
         </Text>
         <SignOut navigation={ navigation }/>
     </View>
+   
  )
 }
+
+

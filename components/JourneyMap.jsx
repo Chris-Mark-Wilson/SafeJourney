@@ -2,12 +2,14 @@ import { appStyle } from "../styles/appStyle";
 import MapView from 'react-native-maps'
 import { PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import{ Marker}  from 'react-native-maps'
-import{ API_KEY } from '@env'
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import { FriendContext } from "../context/friendContext";
+import{Marker} from 'react-native-maps'
+import{API_KEY} from '@env'
 
 export default function JourneyMap({region,data,setRegion}){
+
 if(!data) return(<Text>promise rejection here</Text>)
   const {userData, setUserData} = useContext(UserContext)
 
@@ -36,16 +38,27 @@ if(!data) return(<Text>promise rejection here</Text>)
       showsPointsOfInterest={true}
       showsUserLocation={true}
       >
+
       
-      {!userData.location.status && userData.location.end.lat &&
-        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
-      }
-      {data.location.status &&
-      <>
+        <MapView
+        showsMyLocationButton={true}
+        provider={PROVIDER_GOOGLE}
+        style={appStyle.map}
+        region={region}
+        onRegionChange={() => {
+          setRegion(region)
+         
+        }}
+        // onPress={handlePress}
+        showsPointsOfInterest={true}
+        showsUserLocation={true}
+      >{data.location.status &&
+        <>
         <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}} pinColor = {"red"} title={"Start of Journey"}/> 
-        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"blue"} title={"Current Location"}/>
+        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"#007AFF"} title={"Current Location"}/>
         <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
-      </>}
+        </>}
+
 
       {data.location.status && <MapViewDirections
         origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
@@ -57,4 +70,5 @@ if(!data) return(<Text>promise rejection here</Text>)
       />}
     </MapView>
   )
+
 }

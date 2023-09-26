@@ -80,7 +80,7 @@ export function SignIn({ navigation }) {
           <TextInput
             value={name}
             placeholder="Name"
-            placeholderTextColor="#003f5c"
+            placeholderTextColor="gray"
             onChangeText={(input) => setName(input)}
           />
         </View>
@@ -88,8 +88,8 @@ export function SignIn({ navigation }) {
           <TextInput
             value={phoneNumber}
             keyboardType="numeric"
-            placeholder="Phone Number"
-            placeholderTextColor="#003f5c"
+            placeholder="Mobile Number"
+            placeholderTextColor="gray"
             onChangeText={(input) => setPhoneNumber(input)}
           />
         </View>
@@ -103,8 +103,8 @@ export function SignIn({ navigation }) {
           <TextInput
             value={logInNumber}
             keyboardType="numeric"
-            placeholder="Phone Number"
-            placeholderTextColor="#003f5c"
+            placeholder="Mobile Number"
+            placeholderTextColor="gray"
             onChangeText={(input) => setLogInNumber(input)}
           />
         </View>

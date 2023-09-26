@@ -26,7 +26,7 @@ export default function App() {
             <Header />
           </View>
           <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Home" component={Home}/>
             <Drawer.Screen name="My friends" component={MyFriends} />
             <Drawer.Screen name="Add friend" component={AddFriend} />
             <Drawer.Screen name="My Profile " component={UserPage} />

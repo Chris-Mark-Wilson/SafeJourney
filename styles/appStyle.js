@@ -25,6 +25,13 @@ export const appStyle = StyleSheet.create({
     headingText: {
       fontSize: 20,
       margin: 10,
+     
+    },
+    headingUserText: {
+      fontSize: 20,
+      marginBottom: 10,
+      fontWeight: 'bold',
+      
     },
 
     button:{
@@ -35,13 +42,14 @@ export const appStyle = StyleSheet.create({
       justifyContent: "center",
       marginTop: 10,
       marginBottom: 60,
-      backgroundColor: "gray",
+      backgroundColor: "#007AFF",
     },
 
     buttonText: {
       fontSize: 15,
       fontWeight: 'bold',
-      color: 'white'
+      color: 'white',
+      
   },
 
   // custom styling
@@ -56,7 +64,7 @@ export const appStyle = StyleSheet.create({
     marginBottom: 10,
     marginRight: 10,
     padding: 10,
-    backgroundColor: "gray",
+    backgroundColor: "#007AFF",
 },
   
   whosJourneyView: {
@@ -65,33 +73,36 @@ export const appStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 85,
     borderColor: "white",
-    position: 'relative'
+    position: "absolute",
+    top:"7%",
+    left:"40%"
   },
 
   nameText:{
-    position: "absolute",
-    top:"7%",
-    left:"40%",
     backgroundColor: "blue",
     color: "white",
-    
     textAlign: "center",
     padding:"2%",
-    // display : "flex",
-    // justifyContent : "center",
-    // alignItems : "center",
     margin:'auto',
-    
+   
   },
   pressable: {
     backgroundColor: "green"
   },
 
     // journeyMap component
-    map: {
-        width: "100%",
-        height: "90%",
-      },
-    
-    
-  });
+  map:{
+    width: "100%",
+    height: "90%",
+  },
+ 
+  userContent:{
+    flex: 0.1,
+    paddingLeft:20,
+    paddingTop: 20,
+    //backgroundColor:"#E5D0E3",
+    marginLeft:10,
+    marginRight:10,
+   
+  }
+});

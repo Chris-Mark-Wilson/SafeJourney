@@ -163,12 +163,14 @@ export const Home = ({navigation}) => {
         </View>
       )}
       {whosJourney === "friend" && (
-        <Text style={appStyle.nameText}>{friendData.name}'s Journey</Text>
+        <View style={appStyle.whosJourneyView}>
+          <Text style={appStyle.nameText}>{friendData.name}'s Journey</Text>
+        </View>
       )}
       {whosJourney === "friend" && (
         <View style={appStyle.centreContainer}>
         <TouchableOpacity style={appStyle.button} onPress={handleReturn}>
-        <Text style={appStyle.buttonText} >Return</Text> 
+        <Text style={appStyle.buttonText} >Return To Home</Text> 
         </TouchableOpacity> 
         </View>
       )}

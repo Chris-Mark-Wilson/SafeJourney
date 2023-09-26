@@ -39,8 +39,10 @@ export function SignOut({ navigation }) {
       };
 
     return (
+        <View style={appStyle.centreContainer}>
         <TouchableOpacity style={appStyle.button} onPress={onPress}>
             <Text style={appStyle.buttonText} >Sign Out</Text> 
         </TouchableOpacity> 
+        </View>
     )
 }

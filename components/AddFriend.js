@@ -29,14 +29,14 @@ export const AddFriend=()=>{
   return(
     <View style={appStyle.appBackground}>
       <View style={appStyle.centreContainer}>
-          <Text style={appStyle.headingText}>Add Friend</Text>
+          <Text style={appStyle.headingText}></Text>
           <View style={styles.inputView}>
               <TextInput
                 style={styles.TextInput}
                 value={phoneNumber}
                 keyboardType="numeric"
-                placeholder="Phone Number"
-                placeholderTextColor="#003f5c"
+                placeholder="Input mobile number"
+                placeholderTextColor="gray"
                 onChangeText={setPhoneNumber}
                 /> 
           </View> 
@@ -68,10 +68,7 @@ const styles = StyleSheet.create({
     TextInput: {
       height: 40,
       flex: 1,
-      padding: 5,
-      marginLeft: 20,
     },
-    
     textView: {
       margin: 10,
     },
