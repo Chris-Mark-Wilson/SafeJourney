@@ -29,7 +29,7 @@ const { userData, setUserData } = useContext(UserContext);
         query={{
           key: API_KEY , 
           language: "en", 
-          types: "address"
+          types:[ "address","establishment"]
         }}
         onFail={(error)=>console.log(error)}
         styles={{
