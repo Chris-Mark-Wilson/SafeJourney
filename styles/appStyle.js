@@ -26,6 +26,11 @@ export const appStyle = StyleSheet.create({
       fontSize: 20,
       margin: 10,
     },
+    headingUserText: {
+      fontSize: 20,
+      margin: 10,
+      fontWeight: 'bold',
+    },
 
     button:{
       width: "40%",
@@ -56,7 +61,7 @@ export const appStyle = StyleSheet.create({
     marginBottom: 10,
     marginRight: 10,
     padding: 10,
-    backgroundColor: "gray",
+    backgroundColor: "#007AFF",
 },
   
   whosJourneyView: {

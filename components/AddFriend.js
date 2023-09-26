@@ -29,13 +29,13 @@ export const AddFriend=()=>{
   return(
     <View style={appStyle.appBackground}>
       <View style={appStyle.centreContainer}>
-          <Text style={appStyle.headingText}>Add Friend</Text>
+          <Text style={appStyle.headingText}></Text>
           <View style={styles.inputView}>
               <TextInput
                 style={styles.TextInput}
                 value={phoneNumber}
                 keyboardType="numeric"
-                placeholder="Phone Number"
+                placeholder="Input phone number"
                 placeholderTextColor="#003f5c"
                 onChangeText={setPhoneNumber}
                 /> 
