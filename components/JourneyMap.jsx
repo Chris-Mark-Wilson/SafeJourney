@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
 export default function JourneyMap({region,data,setRegion}){
-
+if(!data) return(<Text>promise rejection here</Text>)
   const {userData, setUserData} = useContext(UserContext)
 
   const onPressHandler=(e)=>{

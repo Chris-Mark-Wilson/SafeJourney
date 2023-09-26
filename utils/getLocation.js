@@ -9,4 +9,5 @@ export const getLocation = async ()=>{
     } else {
       return Promise.reject({msg: 'Location permission not given'})
     }
+
 }

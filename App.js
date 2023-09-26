@@ -12,6 +12,7 @@ import { FriendListProvider } from "./context/friendListContext";
 import { UserPage } from "./components/UserPage";
 import { SignOut } from "./components/SignOut";
 import { Footer } from "./components/Footer";
+import { SignIn } from "./components/SignIn";
 
 const Drawer = createDrawerNavigator();
 
