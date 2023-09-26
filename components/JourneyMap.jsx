@@ -9,13 +9,36 @@ import{Marker} from 'react-native-maps'
 import{API_KEY} from '@env'
 
 export default function JourneyMap({region,data,setRegion}){
-  const{userData}=useContext(UserContext)
-  const {friendData}=useContext(FriendContext)
-  const GOOGLE_MAPS_APIKEY = API_KEY;
-console.log(data,"<data")
-console.log(friendData,"<firendData")
-console.log(region)
-    return(
+
+if(!data) return(<Text>promise rejection here</Text>)
+  const {userData, setUserData} = useContext(UserContext)
+
+  const onPressHandler=(e)=>{
+    if(!data.location.status){
+      setUserData((oldData)=>{
+        const newData=JSON.parse(JSON.stringify(oldData))
+        newData.location.end.lat = e.nativeEvent.coordinate.latitude
+        newData.location.end.long = e.nativeEvent.coordinate.longitude
+        return newData
+      })
+    }
+  }
+
+  return(
+    <MapView
+      showsMyLocationButton={true}
+      provider={PROVIDER_GOOGLE}
+      style={appStyle.map}
+      region={region}
+      onPress={onPressHandler}
+      onRegionChange={() => {
+        setRegion(region)
+       
+      }}
+      showsPointsOfInterest={true}
+      showsUserLocation={true}
+      >
+
       
         <MapView
         showsMyLocationButton={true}
@@ -36,16 +59,16 @@ console.log(region)
         <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
         </>}
 
-     {data.location.status && 
-     <MapViewDirections
-      origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
-      destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
-      apikey={GOOGLE_MAPS_APIKEY}
-      strokeWidth={3}
-    strokeColor="hotpink"
-  />}
-      </MapView>
-      
-     
-    )
+
+      {data.location.status && <MapViewDirections
+        origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
+        destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
+        apikey={API_KEY}
+        strokeWidth={3}
+        strokeColor="hotpink"
+        mode="WALKING"
+      />}
+    </MapView>
+  )
+
 }

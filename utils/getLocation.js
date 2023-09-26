@@ -1,22 +1,13 @@
 import * as Location from 'expo-location';
 
-export const getLocation = async (userData)=>{
+export const getLocation = async ()=>{
 
-  userData.locationPermission = true
-  
-  if(!userData.locationPermission){
     const { status } = await Location.requestForegroundPermissionsAsync()
     if (status === 'granted'){
-      userData.locationPermission = true
+      const {coords:{latitude,longitude}} = await Location.getCurrentPositionAsync({})
+      return ({latitude,longitude})
+    } else {
+      return Promise.reject({msg: 'Location permission not given'})
     }
-  }
 
-  if(userData.locationPermission){
-    try{const {coords:{latitude,longitude}} = await Location.getCurrentPositionAsync({})
-    return ({latitude,longitude})
-  }
-  catch(err){
-    console.log(err)
-  }
-  }
 }

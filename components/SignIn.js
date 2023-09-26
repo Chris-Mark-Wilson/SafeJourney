@@ -21,6 +21,8 @@ export function SignIn({ navigation }) {
   const { userData, setUserData } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
 
+  
+
   function onPressSignIn() {
     if (!name || !phoneNumber) {
       showAlert("Please enter a Name and Phone Number");
@@ -35,6 +37,7 @@ export function SignIn({ navigation }) {
           navigation.navigate("Home");
         })
         .catch((err) => {
+          console.log(err,"err in signIncomponent on 500 server error")
           setIsLoading(false);
           showAlert(err.response.data.msg);
         });
