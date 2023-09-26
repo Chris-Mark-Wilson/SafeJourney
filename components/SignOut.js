@@ -11,7 +11,17 @@ export function SignOut({ navigation }) {
     const { friendList, setFriendList } = useContext(FriendListContext)
 
     const onPress = () => {
-        setUserData('')
+        setUserData({ 
+            user_id: null,  
+            name: '',  
+            phoneNumber: '',  
+            location: { status: false,     
+                        start: {lat: null, long: null},    
+                        current: {lat: null, long: null},    
+                        end: {lat: null, long: null}  
+                    },  
+            friendList: []
+        })
         setFriendData({
             user_id: null,  
             name: null,  
