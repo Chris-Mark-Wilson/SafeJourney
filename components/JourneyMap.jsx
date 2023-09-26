@@ -53,6 +53,7 @@ if(!data) return(<Text>promise rejection here</Text>)
         apikey={API_KEY}
         strokeWidth={3}
         strokeColor="hotpink"
+        mode="WALKING"
       />}
     </MapView>
   )
