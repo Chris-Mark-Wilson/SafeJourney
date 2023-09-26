@@ -38,7 +38,7 @@ export default function JourneyMap({region,data,setRegion, travelType}){
       >
       
       {!userData.location.status && userData.location.end.lat &&
-        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"green"} title={"End of Journey"}/>
       }
       {data.location.status &&
       <>
