@@ -68,23 +68,20 @@ export const appStyle = StyleSheet.create({
 },
   
   whosJourneyView: {
-    width: "15%",
-    height: "5%",
     borderWidth: 1,
-    borderRadius: 85,
     borderColor: "white",
     position: "absolute",
     top:"7%",
-    left:"40%"
+    left:"40%",
+    backgroundColor:"blue",
+    borderRadius:10,
+    padding: 10
   },
-
   nameText:{
-    backgroundColor: "blue",
     color: "white",
     textAlign: "center",
     padding:"2%",
     margin:'auto',
-   
   },
   pressable: {
     backgroundColor: "green"
