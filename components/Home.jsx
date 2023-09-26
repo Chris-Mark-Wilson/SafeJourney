@@ -159,7 +159,7 @@ export const Home = ({navigation}) => {
 
       {userData.name && whosJourney === "user" && (
         <View style={appStyle.whosJourneyView}>
-          <Text style={appStyle.nameText}>{userData.name}'s Journey</Text>
+          <Text style={appStyle.nameText}>My Journey</Text>
         </View>
       )}
       {whosJourney === "friend" && (

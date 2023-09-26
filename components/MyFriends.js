@@ -9,6 +9,7 @@ import { appStyle } from "../styles/appStyle";
 import { useContext } from "react";
 import { FriendContext } from "../context/friendContext";
 import { FriendListContext } from "../context/friendListContext";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 const Item = ({ name,isBold }) => (
@@ -29,30 +30,26 @@ export const MyFriends = ({ navigation }) => {
   };
 
   return (
-    <View>
-      
+    <View style={styles.background}>
+
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
         renderItem={({ item }) => (
-
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
-            <View style={styles.container}><Text style={styles.statusLight}>🟢</Text> 
-
-            <Pressable
-              onPress={() => handlePress(item)}
-             
-            >
-
-              <Item name={item.name} isBold={item.location.status === true} />
-            </Pressable></View></View>
+            <View style={styles.container}>
+              <Text style={styles.statusLight}>🟢</Text> 
+              <Pressable onPress={() => handlePress(item)}>
+                <Item name={item.name} isBold={item.location.status === true} />
+              </Pressable>
+            </View>
+            </View>
           ) 
         }
+        keyExtractor={(item) => {item.name}}
+        />
 
-        keyExtractor={(item) => item.name}
-      />
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
-
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
                <View style={styles.container}>
@@ -65,52 +62,57 @@ export const MyFriends = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+
+  background: {
+    paddingLeft:15,
+    paddingRight:15,
+    paddingBottom: 260,
+    // height: '100%',
+    backgroundColor: "#fff",
+  },
+  
   container: {
-    marginTop:10,
     marginLeft:20,
     display:"flex",
     flexDirection:"row",
-    gap: 20,
+    gap: 15,
   },
-  item: {
-    backgroundColor: "white",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
+  
   pressable: {
     flexDirection: 'row',
     alignItems: 'center', 
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-   backgroundColor: 'lightgreen',
-    borderRadius: 8,
+    paddingTop:15,
+    paddingBottom:15,
+    backgroundColor: "#248DFF",
+    borderRadius: 100,
     marginVertical: 4, 
 
   },
   nonPressable: {
     flexDirection: 'row',
     alignItems: 'center', 
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: 'lightgray' ,
-    borderRadius: 8,
+    paddingTop:15,
+    paddingBottom:15,
+    backgroundColor: '#E5E5E5',
+    borderRadius: 100,
     marginVertical: 4, 
     
   },
   boldText:{
-    fontSize:20,
+    color: 'white',
+    fontSize:18,
     fontWeight: "bold",
     
   },
 
   normalText:{
-    fontSize:20,
-    opacity: 0.5,
+    color: 'gray',
+    fontSize:18,
+    // fontWeight: "bold",
     
   },
 
   statusLight: {
-    fontSize:20
+    fontSize:18
   }
 });

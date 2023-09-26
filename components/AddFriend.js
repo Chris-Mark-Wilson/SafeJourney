@@ -32,7 +32,7 @@ export const AddFriend=()=>{
           <Text style={appStyle.headingText}></Text>
           <View style={styles.inputView}>
               <TextInput
-                style={styles.TextInput}
+                // style={styles.TextInput}
                 value={phoneNumber}
                 keyboardType="numeric"
                 placeholder="Input mobile number"
@@ -55,21 +55,23 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
     },
+    
     inputView: {
       backgroundColor: "white",
       borderWidth: 1,
       borderColor: "gray",
       borderRadius: 5,
       width: "60%",
-      height: 40,
+      height: 50,
       marginBottom: 10,
-      alignItems: "center",
+      // alignItems: "center",
+      padding:10
     },
-    TextInput: {
-      height: 40,
-      flex: 1,
-    },
-    textView: {
-      margin: 10,
-    },
+    // TextInput: {
+    //   height: 40,
+    //   flex: 1,
+    // },
+    // textView: {
+    //   margin: 10,
+    // },
 })

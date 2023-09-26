@@ -47,18 +47,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     position:"absolute",
-    top:'7%',
+    top:'8%',
+    maxWidth: '100%',
+    margin: 10
   },
   textInput: {
-    height: 40,
-    width: 60,
+    height: 50,
+    // width: 60,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 5,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    padding: 10,
+    // marginTop: 10,
+    // marginLeft: 10,
+    // marginRight: 10,
+    // padding: 10,
   }
 });
 

@@ -23,26 +23,35 @@ export const appStyle = StyleSheet.create({
     },
 
     headingText: {
-      fontSize: 20,
+      color: 'gray',
+      fontWeight: 'bold',
+      fontSize: 24,
       margin: 10,
      
     },
     headingUserText: {
-      fontSize: 20,
-      marginBottom: 10,
-      fontWeight: 'bold',
+      color: 'gray',
+      fontSize: 18,
+      marginTop: 10,
+      // fontWeight: 'bold',
       
     },
 
     button:{
-      width: "40%",
-      borderRadius: 25,
-      height: 40,
+      // width: "40%",
+      // borderRadius: 25,
+      // height: 40,
       alignItems: "center",
       justifyContent: "center",
       marginTop: 10,
-      marginBottom: 60,
-      backgroundColor: "#007AFF",
+      marginBottom: 40,
+      backgroundColor: "#248DFF",
+      //new stuff
+      borderRadius: 100,
+      paddingBottom:15,
+      paddingTop:15,
+      paddingLeft:30,
+      paddingRight:30      
     },
 
     buttonText: {
@@ -55,42 +64,59 @@ export const appStyle = StyleSheet.create({
   // custom styling
 
   startJourneyButton:{
-    width: "40%",
-    borderRadius: 25,
-    height: 40,
+    // width: "40%",
+    // borderRadius: 25,
+    // height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 10,
-    marginRight: 10,
-    padding: 10,
-    backgroundColor: "#007AFF",
+    // marginTop: 10,
+    // marginBottom: 10,
+    marginLeft: 10,
+    // padding: 10,
+    backgroundColor: "#248DFF",
+
+    // new
+    borderRadius: 100,
+    height: 50,
+    paddingBottom:15,
+    paddingTop:15,
+    paddingLeft:20,
+    paddingRight:20,
 },
   
   whosJourneyView: {
-    borderWidth: 1,
-    borderColor: "white",
-    position: "absolute",
-    top:"7%",
-    left:"40%",
-    backgroundColor:"blue",
+    
+    zIndex: 1,
+    flex: 1,
+    flexDirection: "column",
+    position:'absolute',
+    // top:'8%',
+    maxWidth: '100%',
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 3,
+    borderColor: "#248DFF",
+    backgroundColor:"white",
     borderRadius:10,
-    padding: 10
+    paddingBottom:5,
+    paddingTop:5,
+    paddingLeft:10,
+    paddingRight:10,
   },
   nameText:{
-    color: "white",
+    color: "#248DFF",
+    fontSize: 15,
+    fontWeight: 'bold',
     textAlign: "center",
-    padding:"2%",
+    padding:"1%",
     margin:'auto',
-  },
-  pressable: {
-    backgroundColor: "green"
   },
 
     // journeyMap component
   map:{
     width: "100%",
-    height: "90%",
+    height: "85%",
   },
  
   userContent:{

@@ -43,8 +43,8 @@ if(!data) return(<Text>promise rejection here</Text>)
       >{data.location.status &&
         <>
         <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}} pinColor = {"red"} title={"Start of Journey"}/> 
-        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"#007AFF"} title={"Current Location"}/>
-        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"red"} title={"End of Journey"}/>
+        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"#248DFF"} title={"Current Location"}/>
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"green"} title={"End of Journey"}/>
         </>}
 
 
@@ -52,8 +52,8 @@ if(!data) return(<Text>promise rejection here</Text>)
         origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
         destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
         apikey={API_KEY}
-        strokeWidth={3}
-        strokeColor="hotpink"
+        strokeWidth={4}
+        strokeColor="#248DFF"
         mode="WALKING"
       />}
     </MapView>
