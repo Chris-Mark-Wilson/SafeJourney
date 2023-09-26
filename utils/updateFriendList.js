@@ -2,9 +2,7 @@ import { Alert } from "react-native";
 import { getFriends } from "./api";
 import * as Notifications from "expo-notifications";
 
-
 export const updateFriendList = (id, friendList, setFriendList,friendData,setFriendData) => {
-
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -56,10 +54,8 @@ export const updateFriendList = (id, friendList, setFriendList,friendData,setFri
         });
       }
       setFriendList(newFriendList);
-    })
-    .catch((err) => {
-      () => {
-        Alert.alert(err);
-      };
-    });
+  }).catch((err) => {
+    console.log('didnt update, trying again');
+    updateFriendList(id, friendList, setFriendList)
+  });
 };
