@@ -4,6 +4,13 @@ import * as Notifications from 'expo-notifications';
 
 export const updateFriendList = (id, friendList, setFriendList) => {
 
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    })
+  })
         getFriends(id).then((newFriendList) => {
             if(friendList.length){
               newFriendList.forEach((friend, index) => {

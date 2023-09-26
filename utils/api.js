@@ -3,41 +3,82 @@ import axios from 'axios'
 const users = axios.create({baseURL: `https://be-safejourney.onrender.com/api`})
 
 export const getFriends = async (id) => {
-    const { data: {friendList} } = await users.get(`/users/${id}/friends`)
-    return friendList
+    try{const response  = await users.get(`/users/${id}/friends`)
+if(!response.data) console.log("no data in getFreinds")
+    return response.data.friendList}
+catch(err){
+    console.log(err,"err in getFriends")
+    throw err
+}
 }
 
 export const signUp = async (name, phoneNumber) => {
-    const { data: {user} } = await users.post(`/users`, {name, phoneNumber})
-    return user
+    try{const response= await users.post(`/users`, {name, phoneNumber})
+    if(!response.data) console.log("no data in signup")
+    return response.data.user}
+    catch(err){
+        console.log(err,"err in signup")
+        throw err
+    }
 }
 
 export const logIn = async (phoneNumber) => {
-    const { data: {user} } = await users.get(`/login/${phoneNumber}`)
-    return user
+    try{const response = await users.get(`/login/${phoneNumber}`)
+    if(!response.data) console.log("no data in login")
+    return response.data.user}
+    catch(err){
+        console.log(err,"err in login")
+        throw err
+    }
 }
 
 export const addFriend = async (id, phoneNumber) => {
-    const { data: {acknowledged} } = await users.patch(`/users/${id}/friends`, { phoneNumber })
-    return acknowledged
+    try{const response = await users.patch(`/users/${id}/friends`, { phoneNumber })
+    if(!response.data) console.log("no data in addfreind")
+    return response.data. acknowledged}
+    catch(err){
+        console.log(err,"err in addFriend")
+        throw err
+    }
 }
 
 export const endJourney = async (id) => {
-    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { status: false })
-    return acknowledged
+    try{const response = await users.patch(`/users/${id}/location`, { status: false })
+    if(!response.data) console.log("no data in endjourney")
+    return response.data.acknowledged}
+    catch(err){
+        console.log(err,"err in endJourney")
+        throw err
+    }
 }
 
 export const startJourney = async (id, start, end) => {
-    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { status: true, start, end })
-    return acknowledged
+    try{const response = await users.patch(`/users/${id}/location`, { status: true, start, end })
+    if(!response.data) console.log("no data in startJourney")
+    return response.data.acknowledged}
+    catch(err){
+        console.log(err,"err in startJourney")
+        throw err
+    }
 }
 
 export const updateJourney = async (id, current) => {
-    const { data: {acknowledged} } = await users.patch(`/users/${id}/location`, { current })
-    return acknowledged
+    try{const response= await users.patch(`/users/${id}/location`, { current })
+    if(!response.data) console.log("no data in updateJourney")
+    return response.data.acknowledged}
+    catch(err){
+        console.log(err,"err in updateJouney")
+        throw err
+    }
 }
 
 export const getFriendById = async (id) => {
-    const { data: {user} } = await users.get(`/users/${id}`)
-    return user
+    try{const response= await users.get(`/users/${id}`)
+    if(!response.data) console.log("no data in getfriendbyid")
+    return response.data.user}
+    catch(err){
+        console.log(err,"err in getfreindbyid")
+        throw err
+    }
+
 }

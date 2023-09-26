@@ -14,15 +14,9 @@ import {SignIn} from './SignIn'
 import * as Notifications from 'expo-notifications';
 import { updateFriendList } from "../utils/updateFriendList";
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  })
-})
 
-export const Home = () => {  
+
+export const Home = ({navigation}) => {  
   const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
@@ -43,7 +37,8 @@ export const Home = () => {
     },[timer])
 
     useEffect(() => {
-      updateFriendList(userData.user_id, friendList, setFriendList)
+        {!userData.user_id && updateFriendList(userData.user_id, friendList, setFriendList)}
+      
       
     }, [timer, userData])
 
@@ -112,7 +107,8 @@ export const Home = () => {
           longitudeDelta: 0.005,
         });
         setIsLoading(false);
-      });
+      })
+      .catch(err=>{console.log(err,"in 2nd use effect of home line 117")});
     }
   }, [whosJourney, userData.user_id]);
 
@@ -148,9 +144,10 @@ export const Home = () => {
     })
   } 
 
-  if(!userData.user_id) return <SignIn/>
+  if(!userData.user_id) return <SignIn navigation={navigation}/>
+  // if(!userData.user_id) navigation.navigate ("SignIn")
 
-  return isLoading ? (
+  return isLoading && userData.user_id ? (
     <ActivityIndicator size="large" color="grey" />
   ) : (
     <View style={appStyle.container}>

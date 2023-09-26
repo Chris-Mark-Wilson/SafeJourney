@@ -2,7 +2,7 @@ import * as Location from 'expo-location';
 
 export const getLocation = async (userData)=>{
 
-  userData.locationPermission = true
+
   
   if(!userData.locationPermission){
     const { status } = await Location.requestForegroundPermissionsAsync()
@@ -17,6 +17,7 @@ export const getLocation = async (userData)=>{
   }
   catch(err){
     console.log(err)
+    return err
   }
   }
 }
