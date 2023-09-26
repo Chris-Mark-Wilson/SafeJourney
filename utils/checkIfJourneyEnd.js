@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { endJourney } from "../utils/api";
 import * as Notifications from 'expo-notifications';
 
@@ -5,6 +6,10 @@ export const checkIfJourneyEnd = async ({ userData, setUserData }) => {
 
   const current = userData.location.current
   const end = userData.location.end
+
+  function showAlert(msg) {
+    Alert.alert(msg)
+  }
   
   if( current.lat >= end.lat - 0.00035 &&
     current.lat <= end.lat + 0.00035 &&
@@ -19,6 +24,7 @@ export const checkIfJourneyEnd = async ({ userData, setUserData }) => {
         newData.location.end = {lat: null, long: null}
         return newData
       })
+      showAlert('You have reached your destination')
       Notifications.scheduleNotificationAsync({
         content: {
           title: 'You have reached your destination',
