@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from "react
 import { useState, useContext } from "react"
 import { addFriend } from "../utils/api"
 import { UserContext } from "../context/userContext"
+import { appStyle } from "../styles/appStyle"
 
 export const AddFriend=()=>{
   const { userData } = useContext(UserContext)
@@ -26,8 +27,9 @@ export const AddFriend=()=>{
   }
 
   return(
-      <View style={styles.container}>
-          <Text style={styles.text}>Add Friend</Text>
+    <View style={appStyle.appBackground}>
+      <View style={appStyle.centreContainer}>
+          <Text style={appStyle.headingText}>Add Friend</Text>
           <View style={styles.inputView}>
               <TextInput
                 style={styles.TextInput}
@@ -36,12 +38,13 @@ export const AddFriend=()=>{
                 placeholder="Phone Number"
                 placeholderTextColor="#003f5c"
                 onChangeText={setPhoneNumber}
-              /> 
+                /> 
           </View> 
-          <TouchableOpacity style={styles.loginBtn} onPress={onPress}>
-            <Text style={styles.loginText} >Add Friend</Text> 
+          <TouchableOpacity style={appStyle.button} onPress={onPress}>
+            <Text style={appStyle.buttonText} >Add Friend</Text> 
           </TouchableOpacity> 
       </View>
+    </View>
   )
 }
 
@@ -68,20 +71,8 @@ const styles = StyleSheet.create({
       padding: 5,
       marginLeft: 20,
     },
-    loginBtn: {
-      width: "40%",
-      borderRadius: 25,
-      height: 40,
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: 20,
-      marginBottom:60,
-      backgroundColor: "gray",
-    },
+    
     textView: {
       margin: 10,
     },
-    text :{
-      fontSize: 25,
-    }
 })

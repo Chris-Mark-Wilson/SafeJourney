@@ -1,4 +1,4 @@
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Text, Button, ActivityIndicator, TouchableOpacity } from "react-native";
 import { appStyle } from "../styles/appStyle";
 import JourneyMap from "./JourneyMap";
 import { useEffect, useState, useContext } from "react";
@@ -161,13 +161,19 @@ export const Home = () => {
       )}
 
       {userData.name && whosJourney === "user" && (
-        <Text style={appStyle.nameText}>{userData.name}</Text>
+        <View style={appStyle.whosJourneyView}>
+          <Text style={appStyle.nameText}>{userData.name}'s Journey</Text>
+        </View>
       )}
       {whosJourney === "friend" && (
-        <Text style={appStyle.nameText}>{friendData.name}</Text>
+        <Text style={appStyle.nameText}>{friendData.name}'s Journey</Text>
       )}
       {whosJourney === "friend" && (
-        <Button title="return" onPress={handleReturn} />
+        <View style={appStyle.centreContainer}>
+        <TouchableOpacity style={appStyle.button} onPress={handleReturn}>
+        <Text style={appStyle.buttonText} >Return</Text> 
+        </TouchableOpacity> 
+        </View>
       )}
       {whosJourney === "user" &&(
         <CancelJourney/>
