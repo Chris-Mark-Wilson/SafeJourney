@@ -23,6 +23,7 @@ export const signUp = async (name, phoneNumber) => {
 }
 
 export const logIn = async (phoneNumber) => {
+    console.log(phoneNumber)
     try{const response = await users.get(`/login/${phoneNumber}`)
     if(!response.data) console.log("no data in login")
     return response.data.user}

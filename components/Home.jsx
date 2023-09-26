@@ -37,9 +37,9 @@ export const Home = ({navigation}) => {
     },[timer])
 
     useEffect(() => {
-        {!userData.user_id && updateFriendList(userData.user_id, friendList, setFriendList)}
+        {userData.user_id && updateFriendList(userData.user_id, friendList, setFriendList,friendData,setFriendData)}
       
-      
+
     }, [timer, userData])
 
     useEffect(() => {
@@ -124,7 +124,7 @@ export const Home = ({navigation}) => {
     } else {
       setWhosJourney(userData.location.status ? "user" : null);
     } 
-  }, [friendData]);
+  }, [friendData,userData]);
 
   useEffect(() => {
     setWhosJourney(userData.location.status ? "user" : null);
