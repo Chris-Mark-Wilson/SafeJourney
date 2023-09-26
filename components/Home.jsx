@@ -19,24 +19,23 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: true,
-  }),
-});
+  })
+})
 
-export const Home = () => {
+export const Home = () => {  
   const timerInterval = 10000;
 
   const { userData, setUserData } = useContext(UserContext);
-  if(!userData) return <SignIn/>
-
+  
   const { friendData, setFriendData } = useContext(FriendContext);
   const { friendList, setFriendList } = useContext(FriendListContext)
   
   const [whosJourney, setWhosJourney] = useState(null);
   const [region, setRegion] = useState(null);
-
+  
   const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
-
+  
     useEffect(()=>{
       setTimeout(()=>{
         setTimer(timer+1)
@@ -45,8 +44,8 @@ export const Home = () => {
 
     useEffect(() => {
       updateFriendList(userData.user_id, friendList, setFriendList)
+      
     }, [timer, userData])
-
 
     useEffect(() => {
       if(whosJourney==='user'){
@@ -65,22 +64,37 @@ export const Home = () => {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           });
-          checkIfJourneyEnd(userData, setUserData).then(() => {
+          checkIfJourneyEnd({ userData, setUserData }).then(() => {
             if(userData.location.status){
+              setTimeout(() => {
               updateJourney(userData.user_id, { lat: latitude, long: longitude })
+              .then(() => {
+                console.log('Updated current location <');
+              }).catch((err) => {
+                console.log('err did not update', '<');
+              })
+            }, 1000);
             }
           })
         })
+        .catch(err=>{
+          console.log(err)
+        })
       }
       if(whosJourney==='friend'){
-        getFriendById(friendData.user_id).then((user) => {
-          setFriendData(user)
-        })
+        setTimeout(() => {
+          getFriendById(friendData.user_id).then((user) => {
+            console.log('friend updated');
+            setFriendData(user)
+          }).catch((err) => {
+            console.log('cant update friend');
+          })  
+        }, 1000);
       }
     }, [timer])
 
   useEffect(() => {
-    if (whosJourney === "user" || whosJourney === null) {
+    if (whosJourney === null) {  //whosJourney === "user" || 
       setIsLoading(true);
       getLocation(userData).then(({ latitude, longitude }) => {
         setUserData((currUserData) => {
@@ -100,7 +114,7 @@ export const Home = () => {
         setIsLoading(false);
       });
     }
-  }, [whosJourney]);
+  }, [whosJourney, userData.user_id]);
 
   useEffect(() => {
     if (friendData.location.status) {
@@ -126,13 +140,15 @@ export const Home = () => {
       name: null,  
       phoneNumber:null,  
       location: {
-          status: false,
-      start: {lat: null, long: null},
-      current: {lat: null, long: null},
-      end: {lat: null, long: null}
-          }
-      })
+        status: false,
+        start: {lat: null, long: null},
+        current: {lat: null, long: null},
+        end: {lat: null, long: null}
+      }
+    })
   } 
+
+  if(!userData.user_id) return <SignIn/>
 
   return isLoading ? (
     <ActivityIndicator size="large" color="grey" />

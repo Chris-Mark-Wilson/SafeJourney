@@ -5,32 +5,33 @@ import { UserContext } from "../context/userContext";
 
 export function CancelJourney() {
 
-    const { userData, setUserData } = useContext(UserContext)
+  const { userData, setUserData } = useContext(UserContext)
 
-    const onPress = () => {
-        endJourney(userData.user_id).then(() => {
-          setUserData((currData) => {
-              const newData = JSON.parse(JSON.stringify(currData))
-              newData.location.status = false
-              newData.location.start = null
-              newData.location.end = null
-              return newData
-          })
-          showAlert('You have cancelled your journey')
-        }).catch((err) => {
-          showAlert('Could not cancel journey')
-        })
-      };
+  const onPress = () => {
+    endJourney(userData.user_id).then(() => {
+      setUserData((currData) => {
+        const newData = JSON.parse(JSON.stringify(currData))
+        newData.location.status = false
+        newData.location.start = {lat: null, long: null}
+        newData.location.end = {lat: null, long: null}
+        return newData
+      })
+      showAlert('You have cancelled your journey')
+    }).catch(() => {
+      console.log('error in cancel journey, trying again ...')
+      onPress()
+    })
+  }
 
-    function showAlert(msg) {
-        Alert.alert(msg)
-      }
+  function showAlert(msg) {
+    Alert.alert(msg)
+  }
 
-    return (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.text} >Cancel Journey</Text> 
-        </TouchableOpacity> 
-    )
+  return (
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+          <Text style={styles.text} >Cancel Journey</Text> 
+      </TouchableOpacity> 
+  )
 }
 
 const styles = StyleSheet.create({

@@ -7,16 +7,24 @@ import { UserContext } from "../context/userContext";
 
 const GoogleApi = () => { 
 
-const { userData } = useContext(UserContext);
-const [end, setEnd] = useState({})
+const { userData, setUserData } = useContext(UserContext);
+
+  function setEndLocation(details){
+    setUserData((oldData)=>{
+      const newData=JSON.parse(JSON.stringify(oldData))
+      newData.location.end.lat = details.geometry.location.lat
+      newData.location.end.long = details.geometry.location.lng
+      return newData
+    })
+  }
 
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
       fetchDetails = {true}
         placeholder="Search for a destination"
-        onPress={(_, details = null) => {
-          setEnd({lat:details.geometry.location.lat, long: details.geometry.location.lng})
+        onPress={(_, details) => {
+          setEndLocation(details)
         }}
         query={{
           key: API_KEY , 
@@ -28,8 +36,7 @@ const [end, setEnd] = useState({})
           textInput: styles.textInput,
         }}
       />
-      {end.lat&&<StartJourney start={userData.location.current} end={end} />}
-      
+      <StartJourney />
     </View>
   );
 };
