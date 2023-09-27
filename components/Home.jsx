@@ -18,6 +18,7 @@ import { updateFriendList } from "../utils/updateFriendList";
 
 export const Home = ({navigation}) => {  
   const timerInterval = 5000;
+  const zoomLevel=0.009
 
   const { userData, setUserData } = useContext(UserContext);
   
@@ -59,8 +60,8 @@ export const Home = ({navigation}) => {
           setRegion({
             latitude: latitude,
             longitude: longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
+            latitudeDelta: zoomLevel,
+            longitudeDelta: zoomLevel,
           });
           checkIfJourneyEnd({ userData, setUserData }).then(() => {
             if(userData.location.status){
@@ -106,8 +107,8 @@ export const Home = ({navigation}) => {
         setRegion({
           latitude: latitude,
           longitude: longitude,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005,
+          latitudeDelta: zoomLevel,
+          longitudeDelta: zoomLevel,
         });
         // setIsLoading(false);
       })
@@ -121,8 +122,8 @@ export const Home = ({navigation}) => {
       setRegion({
         latitude: friendData.location.current.lat,
         longitude: friendData.location.current.long,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: zoomLevel,
+        longitudeDelta: zoomLevel,
       });
     } else {
       setWhosJourney(userData.location.status ? "user" : null);
