@@ -5,6 +5,7 @@ const users = axios.create({baseURL: `https://be-safejourney.onrender.com/api`})
 export const getFriends = async (id) => {
     try{const response  = await users.get(`/users/${id}/friends`)
 if(!response.data) console.log("no data in getFreinds")
+
     return response.data.friendList}
 catch(err){
     console.log(err,"err in getFriends")

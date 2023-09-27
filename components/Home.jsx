@@ -17,7 +17,7 @@ import { updateFriendList } from "../utils/updateFriendList";
 
 
 export const Home = ({navigation}) => {  
-  const timerInterval = 10000;
+  const timerInterval = 5000;
 
   const { userData, setUserData } = useContext(UserContext);
   
@@ -29,9 +29,10 @@ export const Home = ({navigation}) => {
   
   const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
-  
+
     useEffect(()=>{
       setTimeout(()=>{
+        console.log("tick..")
         setTimer(timer+1)
         },timerInterval)
     },[timer])
