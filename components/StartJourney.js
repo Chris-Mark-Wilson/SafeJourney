@@ -4,9 +4,26 @@ import { useContext } from "react"
 import { UserContext } from "../context/userContext";
 import { appStyle } from "../styles/appStyle";
 
-export function StartJourney() {
+export function StartJourney({ setTravelType }) {
 
     const { userData, setUserData } = useContext(UserContext)
+
+    const selectTravelType = () => {
+        Alert.alert('Travel Directions', 'Please select your type of travel', [
+          {
+            text: 'Walking            ',
+            onPress: () => {
+                setTravelType('WALKING')
+                showAlert('You have started your journey')
+            }
+          },
+          {text: '  Driving                  ', onPress: () => {
+            setTravelType('DRIVING')
+            showAlert('You have started your journey')
+            }
+          }
+        ]);
+    }
 
     function onPress(){
         const start = userData.location.current
@@ -16,7 +33,7 @@ export function StartJourney() {
             showAlert('Please input a destination')
         } else {
             startJourney(userData.user_id, start, end).then(() => {
-                showAlert('You have started your journey')
+                selectTravelType()
                 setUserData((currData) => {
                     const newData = JSON.parse(JSON.stringify(currData))
                     newData.location.status = true
@@ -24,8 +41,8 @@ export function StartJourney() {
                     newData.location.end = end
                     return newData
                 })
-            }).catch((err) => {
-                console.log(err.response.data.msg, 'Error Here <<<');
+                }).catch((err) => {
+                    console.log(err.response.data.msg, 'Error Here <<<');
             })
         }
     }

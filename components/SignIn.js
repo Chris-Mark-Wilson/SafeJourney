@@ -39,7 +39,7 @@ export function SignIn({ navigation }) {
         .catch((err) => {
           console.log(err,"err in signIncomponent on 500 server error")
           setIsLoading(false);
-          showAlert(err.response.data.msg);
+          showAlert('Failed to create account');
         });
     }
   }
