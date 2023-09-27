@@ -31,6 +31,7 @@ export const MyFriends = ({ navigation }) => {
 
   return (
     <View style={styles.background}>
+      keyExtractor={(item) => {item.name}}
 
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
@@ -45,11 +46,11 @@ export const MyFriends = ({ navigation }) => {
             </View>
           ) 
         }
-        keyExtractor={(item) => {item.name}}
         />
 
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
+        keyExtractor={(item) => {item.name}}
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
                <View style={styles.container}>
