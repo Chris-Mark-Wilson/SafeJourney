@@ -35,9 +35,11 @@ export function StartJourney() {
     }
 
     return (
-        <TouchableOpacity style={appStyle.startJourneyButton} onPress={onPress}>
+        <View style={appStyle.centreContainer}>
+        <TouchableOpacity style={appStyle.button} onPress={onPress}>
             <Text style={appStyle.buttonText} >Start Journey</Text> 
         </TouchableOpacity> 
+        </View>
     )
 }
 

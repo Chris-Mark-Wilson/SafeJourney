@@ -60,7 +60,7 @@ export const appStyle = StyleSheet.create({
 
     buttonText: {
       textAlign:"center",
-      width:"80%",
+      width:"100%",
       fontSize: 15,
       fontWeight: 'bold',
       color: 'white',
@@ -70,7 +70,7 @@ export const appStyle = StyleSheet.create({
   // custom styling
 
   startJourneyButton:{
-    // width: "40%",
+    width: "40%",
     // borderRadius: 25,
     // height: 40,
     alignItems: "center",
@@ -86,8 +86,8 @@ export const appStyle = StyleSheet.create({
     height: 50,
     paddingBottom:15,
     paddingTop:15,
-    paddingLeft:20,
-    paddingRight:20,
+    paddingLeft:0,
+    paddingRight:0,
 },
   
   whosJourneyView: {
