@@ -34,7 +34,7 @@ export const MyFriends = ({ navigation }) => {
 
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
-        keyExtractor={(item) => {item.name}}
+        keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
             <View style={styles.container}>
@@ -50,7 +50,7 @@ export const MyFriends = ({ navigation }) => {
 
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
-        keyExtractor={(item) => {item.name}}
+        keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
           <View style={item.location.status === true ? styles.pressable : styles.nonPressable}>
                <View style={styles.container}>

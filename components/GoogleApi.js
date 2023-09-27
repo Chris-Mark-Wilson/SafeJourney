@@ -19,6 +19,7 @@ const { userData, setUserData } = useContext(UserContext);
   }
 
   return (
+    <>
     <View style={styles.container}>
       <GooglePlacesAutocomplete
       fetchDetails = {true}
@@ -36,8 +37,9 @@ const { userData, setUserData } = useContext(UserContext);
           textInput: styles.textInput,
         }}
       />
-      <StartJourney />
     </View>
+      <StartJourney />
+      </>
   );
 };
 
