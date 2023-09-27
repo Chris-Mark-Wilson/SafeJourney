@@ -91,7 +91,7 @@ export const Home = ({navigation}) => {
 
   useEffect(() => {
     if (whosJourney === null) {  //whosJourney === "user" || 
-      setIsLoading(true);
+      // setIsLoading(true);
       getLocation(userData).then(({ latitude, longitude }) => {
         setUserData((currUserData) => {
           const newData = JSON.parse(JSON.stringify(currUserData));
@@ -107,11 +107,11 @@ export const Home = ({navigation}) => {
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         });
-        setIsLoading(false);
+        // setIsLoading(false);
       })
       .catch(err=>{console.log(err,"in 2nd use effect of home line 117")});
     }
-  }, [whosJourney, userData.user_id]);
+  }, [whosJourney, userData.user_id, timer]);
 
   useEffect(() => {
     if (friendData.location.status) {

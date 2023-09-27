@@ -58,7 +58,7 @@ export function SignIn({ navigation }) {
         })
         .catch((err) => {
           setIsLoading(false);
-          showAlert(err.response.data.msg);
+          showAlert('Failed to log in');
         });
     }
   }
@@ -71,6 +71,7 @@ export function SignIn({ navigation }) {
     <ActivityIndicator size="large" color="grey" />
   ) : (
     <View style={appStyle.appBackground}>
+        <ScrollView>
       <View style={appStyle.centreContainer}>
           <Text style={appStyle.headingText}>Create account</Text>
         <View style={styles.inputView}>
@@ -108,6 +109,7 @@ export function SignIn({ navigation }) {
           <Text style={appStyle.buttonText}>Log In</Text>
         </TouchableOpacity>
       </View>
+        </ScrollView>
     </View>
   );
 }
