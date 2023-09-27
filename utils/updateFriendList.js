@@ -56,6 +56,6 @@ export const updateFriendList = (id, friendList, setFriendList,friendData,setFri
       setFriendList(newFriendList);
   }).catch((err) => {
     console.log('didnt update, trying again');
-    updateFriendList(id, friendList, setFriendList)
+  
   });
 };
