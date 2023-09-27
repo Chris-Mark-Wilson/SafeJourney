@@ -38,7 +38,10 @@ export const appStyle = StyleSheet.create({
     },
 
     button:{
-      // width: "40%",
+      
+      justifyContent:"center",
+    
+      width: "50%",
       // borderRadius: 25,
       // height: 40,
       alignItems: "center",
@@ -51,10 +54,13 @@ export const appStyle = StyleSheet.create({
       paddingBottom:15,
       paddingTop:15,
       paddingLeft:30,
-      paddingRight:30      
+      paddingRight:30,      
+      
     },
 
     buttonText: {
+      textAlign:"center",
+      width:"80%",
       fontSize: 15,
       fontWeight: 'bold',
       color: 'white',
