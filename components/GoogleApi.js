@@ -5,7 +5,7 @@ import{API_KEY} from '@env'
 import { StartJourney } from "./StartJourney";
 import { UserContext } from "../context/userContext";
 
-const GoogleApi = () => { 
+const GoogleApi = ({ setTravelType }) => { 
 
 const { userData, setUserData } = useContext(UserContext);
 
@@ -38,7 +38,7 @@ const { userData, setUserData } = useContext(UserContext);
         }}
       />
     </View>
-      <StartJourney />
+      <StartJourney setTravelType={setTravelType} />
       </>
   );
 };

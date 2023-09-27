@@ -7,7 +7,7 @@ import{ API_KEY } from '@env'
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
-export default function JourneyMap({region,data,setRegion}){
+export default function JourneyMap({region,data,setRegion, travelType}){
 
   const {userData, setUserData} = useContext(UserContext)
 
@@ -52,7 +52,7 @@ export default function JourneyMap({region,data,setRegion}){
         apikey={API_KEY}
         strokeWidth={4}
         strokeColor="#248DFF"
-        mode="WALKING"
+        mode={travelType}
       />}
     </MapView>
   )

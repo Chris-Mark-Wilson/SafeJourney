@@ -17,7 +17,7 @@ export const AddFriend=()=>{
           showAlert(`Friend added`)
         })
        .catch((err) => {
-          showAlert(err.response.data.msg)
+          showAlert('Could not add friend')
         })
       }
     }

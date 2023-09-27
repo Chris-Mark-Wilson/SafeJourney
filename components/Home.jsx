@@ -30,6 +30,8 @@ export const Home = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
 
+  const [travelType, setTravelType] = useState('WALKING')
+
     useEffect(()=>{
       setTimeout(()=>{
         console.log("tick..")
@@ -153,9 +155,9 @@ export const Home = ({navigation}) => {
   ) : (
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
-        <JourneyMap region={region} data={friendData} setRegion={setRegion} />
+        <JourneyMap region={region} data={friendData} setRegion={setRegion} travelType={travelType} />
       ) : (
-        <JourneyMap region={region} setRegion={setRegion} data={userData} />
+        <JourneyMap region={region} setRegion={setRegion} data={userData} travelType={travelType} />
       )}
 
       {userData.name && whosJourney === "user" && (
@@ -178,7 +180,7 @@ export const Home = ({navigation}) => {
       {whosJourney === "user" &&(
         <CancelJourney/>
       )}
-      {whosJourney === null && <GoogleApi />}
+      {whosJourney === null && <GoogleApi setTravelType={setTravelType}/>}
     </View>
   );
 };
