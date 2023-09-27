@@ -58,7 +58,7 @@ export function SignIn({ navigation }) {
         })
         .catch((err) => {
           setIsLoading(false);
-          showAlert(err.response.data.msg);
+          showAlert('Failed to log in');
         });
     }
   }
