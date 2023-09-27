@@ -72,14 +72,11 @@ export function SignIn({ navigation }) {
   ) : (
     <View style={appStyle.appBackground}>
       <View style={appStyle.centreContainer}>
-        <StatusBar style="auto" />
-        <View style={styles.textView}>
-          <Text style={appStyle.headingText}>Create an account</Text>
-        </View>
+          <Text style={appStyle.headingText}>Create account</Text>
         <View style={styles.inputView}>
           <TextInput
             value={name}
-            placeholder="Name"
+            placeholder="Input name"
             placeholderTextColor="gray"
             onChangeText={(input) => setName(input)}
           />
@@ -88,7 +85,7 @@ export function SignIn({ navigation }) {
           <TextInput
             value={phoneNumber}
             keyboardType="numeric"
-            placeholder="Mobile Number"
+            placeholder="Input mobile number"
             placeholderTextColor="gray"
             onChangeText={(input) => setPhoneNumber(input)}
           />
@@ -96,14 +93,13 @@ export function SignIn({ navigation }) {
         <TouchableOpacity style={appStyle.button} onPress={onPressSignIn}>
           <Text style={appStyle.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <View style={styles.textView}>
+        
           <Text style={appStyle.headingText}>Log in</Text>
-        </View>
         <View style={styles.inputView}>
           <TextInput
             value={logInNumber}
             keyboardType="numeric"
-            placeholder="Mobile Number"
+            placeholder="Input mobile number"
             placeholderTextColor="gray"
             onChangeText={(input) => setLogInNumber(input)}
           />
@@ -122,9 +118,10 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 5,
     width: "60%",
-    height: 40,
+    height: 50,
     marginBottom: 10,
-    paddingTop: 5,
-    alignItems: "center",
+    // paddingTop: 5,
+    // alignItems: "center",
+    padding:10
   },
 });

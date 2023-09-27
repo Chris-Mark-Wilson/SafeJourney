@@ -25,10 +25,10 @@ export default function App() {
           <View>
             <Header />
           </View>
-          <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Navigator initialRouteName="Home" screenOptions={{headerTitleStyle: {color:'gray'}, headerTintColor: 'gray'}}>
             <Drawer.Screen name="Home" component={Home}/>
-            <Drawer.Screen name="My friends" component={MyFriends} />
-            <Drawer.Screen name="Add friend" component={AddFriend} />
+            <Drawer.Screen name="My Friends" component={MyFriends} />
+            <Drawer.Screen name="Add Friend" component={AddFriend} />
             <Drawer.Screen name="My Profile " component={UserPage} />
           </Drawer.Navigator>
           <View>
