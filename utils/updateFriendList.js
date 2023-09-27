@@ -11,12 +11,15 @@ export const updateFriendList = (id, friendList, setFriendList,friendData,setFri
       shouldSetBadge: true,
     }),
   });
+  console.log(id)
   getFriends(id)
     .then((newFriendList) => {
+    
       if (friendList.length) {
-        newFriendList.forEach((friend, index) => {
-          if (friend.location.status !== friendList[index].location.status) {
-            if (friend.location.status) {
+
+        friendList.forEach((friend, index) => {
+          if (friend.location.status !== newFriendList[index].location.status) {
+            if (!friend.location.status) {
               Notifications.scheduleNotificationAsync({
                 content: {
                   title: `${friend.name} has started their journey`,
@@ -26,7 +29,7 @@ export const updateFriendList = (id, friendList, setFriendList,friendData,setFri
                 trigger: null,
               });
             }
-            if (!friend.location.status) {
+            if (friend.location.status) {
               if (friend.user_id === friendData.user_id) {
                 setFriendData({
                   user_id: null,
@@ -54,8 +57,9 @@ export const updateFriendList = (id, friendList, setFriendList,friendData,setFri
         });
       }
       setFriendList(newFriendList);
+
   }).catch((err) => {
     console.log('didnt update, trying again');
-  
+
   });
 };

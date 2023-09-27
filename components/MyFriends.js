@@ -26,7 +26,7 @@ export const MyFriends = ({ navigation }) => {
 
   const handlePress = (val) => {
     setFriendData({ ...val });
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   return (
