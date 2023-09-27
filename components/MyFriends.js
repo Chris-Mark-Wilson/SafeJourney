@@ -31,6 +31,7 @@ export const MyFriends = ({ navigation }) => {
 
   return (
     <View style={styles.background}>
+<View  style={styles.listContainer}>
 
       <FlatList
         data={friendList.filter(friend => friend.location.status)}
@@ -47,6 +48,8 @@ export const MyFriends = ({ navigation }) => {
           ) 
         }
         />
+        </View>
+<View  style={styles.listContainer}>
 
       <FlatList
         data={friendList.filter(friend => !friend.location.status)}
@@ -58,6 +61,7 @@ export const MyFriends = ({ navigation }) => {
         <Item name={item.name} /></View></View>
         )}/>
 
+        </View>
     </View>
   );
 };
@@ -67,9 +71,12 @@ const styles = StyleSheet.create({
   background: {
     paddingLeft:15,
     paddingRight:15,
-    paddingBottom: 260,
-    // height: '100%',
+    height: '100%',
     backgroundColor: "#fff",
+  },
+
+  listContainer: {
+//  height: 'fitContent'
   },
   
   container: {
