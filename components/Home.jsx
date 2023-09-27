@@ -18,7 +18,7 @@ import { updateFriendList } from "../utils/updateFriendList";
 
 export const Home = ({navigation}) => {  
   const timerInterval = 5000;
-  const zoomLevel=0.009
+  const zoomLevel=0.005
 
   const { userData, setUserData } = useContext(UserContext);
   
@@ -156,9 +156,9 @@ export const Home = ({navigation}) => {
   ) : (
     <View style={appStyle.container}>
       {whosJourney === "friend" ? (
-        <JourneyMap region={region} data={friendData} setRegion={setRegion} travelType={travelType} />
+        <JourneyMap region={region} data={friendData} setRegion={setRegion} travelType={travelType} zoomLevel={zoomLevel}/>
       ) : (
-        <JourneyMap region={region} setRegion={setRegion} data={userData} travelType={travelType} />
+        <JourneyMap region={region} setRegion={setRegion} data={userData} travelType={travelType} zoomLevel={zoomLevel}/>
       )}
 
       {userData.name && whosJourney === "user" && (

@@ -7,7 +7,7 @@ import{ API_KEY } from '@env'
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
-export default function JourneyMap({region,data,setRegion, travelType}){
+export default function JourneyMap({region,data,setRegion, travelType,zoomLevel}){
 
   const {userData, setUserData} = useContext(UserContext)
 
@@ -29,10 +29,17 @@ export default function JourneyMap({region,data,setRegion, travelType}){
       style={appStyle.map}
       region={region}
       onPress={onPressHandler}
-      onRegionChange={() => {
-        setRegion(region)
-       
-      }}
+      onRegionChange={(newRegion) => {
+        console.log(newRegion)
+        setRegion((oldRegion)=>{
+          return{
+        latitude:oldRegion.latitude,
+longitude:oldRegion.longitude,
+latitudeDelta:newRegion.latitudeDelta,
+longitudeDelta:newRegion.longitudeDelta
+        }
+      })
+    }}
       showsPointsOfInterest={true}
       showsUserLocation={true}
       >
