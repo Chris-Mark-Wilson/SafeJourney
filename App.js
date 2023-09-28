@@ -31,9 +31,6 @@ export default function App() {
             <Drawer.Screen name="Add Friend" component={AddFriend} />
             <Drawer.Screen name="My Profile " component={UserPage} />
           </Drawer.Navigator>
-          <View>
-            <Footer />
-          </View>
         </NavigationContainer>
       </FriendListProvider>
     </UserProvider>
