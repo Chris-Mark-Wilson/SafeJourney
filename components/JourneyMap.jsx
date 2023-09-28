@@ -40,61 +40,25 @@ export default function JourneyMap({
       }}
       showsPointsOfInterest={true}
       showsUserLocation={true}
-    >
-      {!userData.location.status && userData.location.end.lat && (
-        <Marker
-          coordinate={{
-            latitude: data.location.end.lat,
-            longitude: data.location.end.long,
-          }}
-          pinColor={"red"}
-          title={"End of Journey"}
-        />
-      )}
-      {data.location.status && (
-        <>
-          <Marker
-            coordinate={{
-              latitude: data.location.start.lat,
-              longitude: data.location.start.long,
-            }}
-            pinColor={"red"}
-            title={"Start of Journey"}
-          />
-          <Marker
-            coordinate={{
-              latitude: data.location.current.lat,
-              longitude: data.location.current.long,
-            }}
-            pinColor={"#248DFF"}
-            title={"Current Location"}
-          />
-          <Marker
-            coordinate={{
-              latitude: data.location.end.lat,
-              longitude: data.location.end.long,
-            }}
-            pinColor={"green"}
-            title={"End of Journey"}
-          />
-        </>
-      )}
-      {data.location.status && (
-        <MapViewDirections
-          origin={{
-            latitude: data.location.start.lat,
-            longitude: data.location.start.long,
-          }}
-          destination={{
-            latitude: data.location.end.lat,
-            longitude: data.location.end.long,
-          }}
-          apikey={API_KEY}
-          strokeWidth={4}
-          strokeColor="#248DFF"
-          mode={travelType}
-        />
-      )}
+      >
+        
+      {!userData.location.status && userData.location.end.lat &&
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"green"} title={"End of Journey"}/>
+      }
+      {data.location.status &&
+      <>
+        <Marker coordinate={{latitude: data.location.start.lat, longitude: data.location.start.long}} pinColor = {"red"} title={"Start of Journey"}/> 
+        <Marker coordinate={{latitude: data.location.current.lat, longitude: data.location.current.long}} pinColor = {"#248DFF"} title={"Current Location"}/>
+        <Marker coordinate={{latitude: data.location.end.lat, longitude: data.location.end.long}} pinColor = {"green"} title={"End of Journey"}/>
+        </>}
+      {data.location.status && <MapViewDirections
+        origin={{latitude: data.location.start.lat, longitude: data.location.start.long}}
+        destination={{latitude: data.location.end.lat, longitude: data.location.end.long}}
+        apikey={API_KEY}
+        strokeWidth={4}
+        strokeColor="#248DFF"
+        mode={travelType}
+      />}
     </MapView>
   );
 }

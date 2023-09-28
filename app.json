@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/safe-journey-start-screen-blue.png",
+      "image": "./assets/safe-journey-start-screen-blue-final.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
