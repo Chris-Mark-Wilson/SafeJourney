@@ -18,6 +18,9 @@ export function SignIn({ navigation }) {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [logInNumber, setLogInNumber] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
+
   const { userData, setUserData } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,6 +36,7 @@ export function SignIn({ navigation }) {
           setIsLoading(false);
           setUserData(user);
           setPhoneNumber("");
+          setPassword('')
           setName("");
           navigation.navigate("Home");
         })
@@ -77,7 +81,7 @@ export function SignIn({ navigation }) {
         <View style={styles.inputView}>
           <TextInput
             value={name}
-            placeholder="Input name"
+            placeholder="Name"
             placeholderTextColor="gray"
             onChangeText={(input) => setName(input)}
           />
@@ -86,9 +90,18 @@ export function SignIn({ navigation }) {
           <TextInput
             value={phoneNumber}
             keyboardType="numeric"
-            placeholder="Input mobile number"
+            placeholder="Mobile number"
             placeholderTextColor="gray"
             onChangeText={(input) => setPhoneNumber(input)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            value={newPassword}
+            placeholder="Password"
+            placeholderTextColor="gray"
+            secureTextEntry={true}
+            onChangeText={(input) => setNewPassword(input)}
           />
         </View>
         <TouchableOpacity style={appStyle.button} onPress={onPressSignIn}>
@@ -100,9 +113,18 @@ export function SignIn({ navigation }) {
           <TextInput
             value={logInNumber}
             keyboardType="numeric"
-            placeholder="Input mobile number"
+            placeholder="Mobile number"
             placeholderTextColor="gray"
             onChangeText={(input) => setLogInNumber(input)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            value={password}
+            placeholder="Password"
+            placeholderTextColor="gray"
+            secureTextEntry={true}
+            onChangeText={(input) => setPassword(input)}
           />
         </View>
         <TouchableOpacity style={appStyle.button} onPress={onPressLogIn}>
@@ -120,7 +142,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 5,
     width: "60%",
-    height: 50,
+    height: 45,
     marginBottom: 10,
     // paddingTop: 5,
     // alignItems: "center",
