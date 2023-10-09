@@ -4,7 +4,7 @@
     "slug": "SafeJourney",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/SJ-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/safe-journey-start-screen-blue-final.png",
@@ -24,13 +24,13 @@
         }
       },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/SJ-adaptive-icon.png",
+        "backgroundColor": "#248DFF"
       },
       "package": "com.bigsegs.SafeJourney"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/SJ-favicon.png"
     }
   }
 }
